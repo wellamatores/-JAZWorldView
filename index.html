@@ -269,6 +269,32 @@
             font-weight: 700;
         }
 
+        /* === GitHub Link Button === */
+        .github-repo-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            letter-spacing: 0.3px;
+            text-decoration: none;
+        }
+        .github-repo-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.02);
+        }
+        .github-repo-btn i { font-size: 14px; color: var(--accent); }
+
         .widget {
             background: var(--bg-panel);
             backdrop-filter: blur(8px);
@@ -1105,6 +1131,178 @@
             color: var(--text-muted);
         }
 
+        /* ===== SPONSOR & CUSTOMER BLOCK (3 CONTAINER CELLS) ===== */
+        .sponsor-customer-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-glass);
+        }
+        .sponsor-customer-cell {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 14px 16px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        .sponsor-customer-cell:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.04);
+        }
+        .sponsor-customer-cell .cell-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-family: var(--font-heading);
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+        }
+        .sponsor-customer-cell .cell-header i {
+            color: var(--accent);
+            font-size: 14px;
+        }
+        .sponsor-customer-cell .cell-body {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+        }
+        .sponsor-customer-cell .cell-body .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .sponsor-customer-cell .cell-body .brand-row .logo-placeholder {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .sponsor-customer-cell .cell-body .brand-row .brand-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .sponsor-customer-cell .cell-body .brand-row .brand-type {
+            font-size: 9px;
+            color: var(--text-muted);
+            background: rgba(212, 175, 55, 0.06);
+            padding: 0 8px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .sponsor-customer-cell .cell-body .brand-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            opacity: 0.8;
+        }
+        .sponsor-customer-cell .cell-body .brand-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            color: var(--accent-green);
+            margin-top: 2px;
+        }
+        .sponsor-customer-cell .cell-body .brand-status i {
+            font-size: 8px;
+        }
+        .sponsor-customer-cell .cell-body .brand-status .offline {
+            color: var(--accent-red);
+        }
+
+        /* Travco logo style */
+        .travco-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.2s;
+        }
+        .travco-logo-link:hover {
+            opacity: 0.8;
+        }
+        .travco-logo-link .logo-placeholder {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.03));
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .travco-logo-link .brand-name {
+            color: var(--accent);
+        }
+
+        /* ===== RADIO PORT GALIB BUTTON ===== */
+        .radio-port-galib-btn {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            padding: 10px 16px;
+            border-radius: var(--radius);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font-body);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            width: 100%;
+            margin-top: 4px;
+            text-decoration: none;
+        }
+        .radio-port-galib-btn:hover {
+            background: rgba(212, 175, 55, 0.16);
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.08);
+            transform: scale(1.02);
+        }
+        .radio-port-galib-btn i {
+            font-size: 16px;
+        }
+        .radio-port-galib-btn .badge-radio {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            font-size: 7px;
+            padding: 1px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 700px) {
+            .sponsor-customer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .sponsor-customer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 1100px) {
             .header-tools .tool-item .big-num { font-size: 22px; }
             .header-tools .tool-item { font-size: 10px; padding: 2px 8px; }
@@ -1423,6 +1621,11 @@
                         <span class="badge">v3</span>
                     </a>
 
+                    <!-- GitHub Repository Link -->
+                    <a href="https://github.com/wellamatores/-JAZWorldView" target="_blank" rel="noopener noreferrer" class="github-repo-btn">
+                        <i class="fab fa-github"></i> Repo
+                    </a>
+
                     <div class="lang-panel">
                         <button class="lang-btn active" onclick="switchLanguage('en', this)">EN</button>
                         <span class="lang-divider">|</span>
@@ -1724,12 +1927,18 @@
 
                 </div>
 
-                <!-- ===== RIGHT COLUMN: 13 WIDGETS ===== -->
+                <!-- ===== RIGHT COLUMN: 13 WIDGETS + RADIO PORT GALIB ===== -->
                 <div class="dashboard-right">
                     <div class="gen-card"><div class="gen-title"><i class="fas fa-map"></i> Terrain Map</div><div class="gen-preview"><span class="preview-icon">🗺️</span></div><div class="gen-desc"><i class="fas fa-arrow-right"></i> 3D terrain & resort locations</div></div>
                     <div class="gen-card"><div class="gen-title"><i class="fas fa-city"></i> Resort Assets</div><div class="gen-preview"><span class="preview-icon">🏨</span></div><div class="gen-desc"><i class="fas fa-arrow-right"></i> 3D building models</div></div>
                     <div class="gen-card"><div class="gen-title"><i class="fas fa-water"></i> Water Resources</div><div class="gen-preview"><span class="preview-icon">🌊</span></div><div class="gen-desc"><i class="fas fa-arrow-right"></i> Usage & conservation</div></div>
                     <div class="gen-card"><div class="gen-title"><i class="fas fa-leaf"></i> Sustainability</div><div class="gen-preview"><span class="preview-icon">🌱</span></div><div class="gen-desc"><i class="fas fa-arrow-right"></i> ESG metrics & carbon footprint</div></div>
+
+                    <!-- Radio Port Galib Button -->
+                    <a href="https://wellamatores.github.io/-JAZWorldView/radio.html" target="_blank" rel="noopener noreferrer" class="radio-port-galib-btn">
+                        <i class="fas fa-satellite-dish"></i> Radio Port Galib
+                        <span class="badge-radio">live</span>
+                    </a>
 
                     <!-- System Health -->
                     <div class="widget" style="padding:12px 14px;">
@@ -1836,10 +2045,72 @@
                     </div>
                 </div>
 
+                <!-- ===== SPONSOR & CUSTOMER BLOCK ===== -->
+                <div class="sponsor-customer-grid">
+                    <div class="sponsor-customer-cell">
+                        <div class="cell-header">
+                            <i class="fas fa-trophy"></i> Platinum Sponsor
+                        </div>
+                        <div class="cell-body">
+                            <div class="brand-row">
+                                <div class="logo-placeholder"><i class="fas fa-crown"></i></div>
+                                <span class="brand-name">Sultan Palace Group</span>
+                                <span class="brand-type">Hospitality</span>
+                            </div>
+                            <div class="brand-desc">
+                                Global luxury resort management · 15+ properties
+                            </div>
+                            <div class="brand-status">
+                                <i class="fas fa-circle"></i> Active · Since 2019
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-customer-cell">
+                        <div class="cell-header">
+                            <i class="fas fa-rocket"></i> Strategic Partner
+                        </div>
+                        <div class="cell-body">
+                            <div class="brand-row">
+                                <div class="logo-placeholder"><i class="fas fa-satellite-dish"></i></div>
+                                <span class="brand-name">AI Core Systems</span>
+                                <span class="brand-type">Technology</span>
+                            </div>
+                            <div class="brand-desc">
+                                AI-driven infrastructure & predictive analytics
+                            </div>
+                            <div class="brand-status">
+                                <i class="fas fa-circle"></i> Integrated · v3.1.0
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-customer-cell">
+                        <div class="cell-header">
+                            <i class="fas fa-building-columns"></i> Project Customer
+                        </div>
+                        <div class="cell-body">
+                            <div class="brand-row">
+                                <a href="https://travco.com/en/" target="_blank" rel="noopener noreferrer" class="travco-logo-link">
+                                    <div class="logo-placeholder"><i class="fas fa-umbrella-beach"></i></div>
+                                    <span class="brand-name">Travco</span>
+                                    <span class="brand-type">Travel · Egypt</span>
+                                </a>
+                            </div>
+                            <div class="brand-desc">
+                                Leading travel company · Strategic deployment partner
+                            </div>
+                            <div class="brand-status">
+                                <i class="fas fa-circle"></i> Active · Since 2024
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="footer-bottom">
                     <span>© 2026 JAZ · AI-Native Hospitality</span>
-                    <span><i class="fas fa-shield-halved" style="color:var(--accent);"></i> Enterprise Grade Security</span>
-                    <span>Made with <i class="fas fa-heart" style="color:var(--accent-red);"></i> in Dubai</span>
+                    <span><i class="fas fa-shield-halved" style="color:var(--accent);"></i> Corporate-level security</span>
+                    <span>Made in <i class="fas fa-heart" style="color:var(--accent-red);"></i> Dubai for <a href="https://travco.com/en/" target="_blank" rel="noopener noreferrer" style="color:var(--accent); text-decoration:none;">Travco</a></span>
                 </div>
             </footer>
 
