@@ -269,11 +269,11 @@
             font-weight: 700;
         }
 
-        /* === GitHub Link Button === */
-        .github-repo-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            color: var(--text-secondary);
+        /* === Radio Header Button === */
+        .radio-header-btn {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--accent);
             padding: 6px 14px;
             border-radius: 30px;
             font-size: 10px;
@@ -287,13 +287,21 @@
             letter-spacing: 0.3px;
             text-decoration: none;
         }
-        .github-repo-btn:hover {
-            background: rgba(255, 255, 255, 0.06);
+        .radio-header-btn:hover {
+            background: rgba(212, 175, 55, 0.16);
             border-color: var(--accent);
             color: var(--accent);
             transform: scale(1.02);
         }
-        .github-repo-btn i { font-size: 14px; color: var(--accent); }
+        .radio-header-btn i { font-size: 14px; }
+        .radio-header-btn .badge-radio-header {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            font-size: 7px;
+            padding: 1px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
 
         .widget {
             background: var(--bg-panel);
@@ -1621,9 +1629,10 @@
                         <span class="badge">v3</span>
                     </a>
 
-                    <!-- GitHub Repository Link -->
-                    <a href="https://github.com/wellamatores/-JAZWorldView" target="_blank" rel="noopener noreferrer" class="github-repo-btn">
-                        <i class="fab fa-github"></i> Repo
+                    <!-- Radio Link in Header -->
+                    <a href="https://wellamatores.github.io/-JAZWorldView/radio.html" target="_blank" rel="noopener noreferrer" class="radio-header-btn">
+                        <i class="fas fa-satellite-dish"></i> Radio
+                        <span class="badge-radio-header">live</span>
                     </a>
 
                     <div class="lang-panel">
