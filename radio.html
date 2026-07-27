@@ -1,76 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-    <title>Port Galib FM/AM · Beach Radio</title>
-    <!-- Font Awesome 6 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Port Galib FM · International Radio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ============================================================
-           CSS Variables — Light / Dark themes (unchanged colors)
-           ============================================================ */
-        :root {
-            --bg-body: #d4c9b0;
-            --bg-card: #e8ddd0;
-            --bg-display: #1a2a1a;
-            --text-primary: #2c2418;
-            --text-secondary: #4a3f32;
-            --text-muted: #7a6a5a;
-            --border-color: #b8a898;
-            --shadow: 0 12px 40px rgba(0,0,0,0.25);
-            --shadow-hover: 0 16px 48px rgba(0,0,0,0.35);
-            --accent: #b8860b;
-            --accent-light: #daa520;
-            --badge-bg: #d4c9b0;
-            --input-bg: #d4c9b0;
-            --card-hover: #f0e8dc;
-            --logo-bg: #1a2a1a;
-            --logo-text: #f0e6d0;
-            --glass: rgba(200,180,160,0.5);
-            --signal-fill: linear-gradient(90deg, #00cc66, #aaff00, #ffaa00);
-            --led-on: #44ff88;
-            --led-off: #3f4f3a;
-            --led-buffering: #ffaa00;
-            --scrollbar: #b8a898;
-            --footer-color: #7a6a5a;
-            --knob-bg: #c0b0a0;
-            --knob-shadow: #8a7a6a;
-            --vef-panel: #c8b8a8;
-            --vef-border: #9a8a7a;
-            --travco-gold: #b8860b;
-            --travco-dark: #1a2a1a;
-            --map-bg: #d4c9b0;
-        }
-
-        [data-theme="dark"] {
-            --bg-body: #1a1a1a;
-            --bg-card: #2a2a2a;
-            --bg-display: #0a1a0a;
-            --text-primary: #e8e0d8;
-            --text-secondary: #b8a898;
-            --text-muted: #7a7a6a;
-            --border-color: #3a3a3a;
-            --shadow: 0 12px 40px rgba(0,0,0,0.6);
-            --shadow-hover: 0 16px 48px rgba(0,0,0,0.8);
-            --badge-bg: #2a2a2a;
-            --input-bg: #1a1a1a;
-            --card-hover: #3a3a3a;
-            --logo-bg: #0a1a0a;
-            --logo-text: #f0e6d0;
-            --glass: rgba(20,20,20,0.7);
-            --knob-bg: #3a3a3a;
-            --knob-shadow: #1a1a1a;
-            --vef-panel: #2a2a2a;
-            --vef-border: #4a4a4a;
-            --scrollbar: #3a3a3a;
-            --footer-color: #6a6a5a;
-            --map-bg: #1a1a1a;
-        }
-
-        /* ============================================================
-           Reset & Base
-           ============================================================ */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -78,518 +16,1269 @@
         }
 
         body {
-            background: var(--bg-body);
+            font-family: 'Quicksand', 'Segoe UI', Roboto, system-ui, sans-serif;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-            padding: 20px;
-            transition: background 0.4s ease;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background 0.8s, color 0.5s;
         }
 
         /* ============================================================
-           Main Radio
-           ============================================================ */
-        .radio {
-            max-width: 860px;
-            width: 100%;
-            background: var(--bg-card);
-            border-radius: 40px 40px 32px 32px;
-            padding: 28px 30px 30px;
-            box-shadow: var(--shadow);
-            border: 3px solid var(--vef-border);
-            transition: background 0.3s, box-shadow 0.3s, border 0.3s;
-            max-height: 98vh;
-            overflow-y: auto;
+           НОЧНАЯ ТЕМА — венецианская штукатурка с серебряными волнами
+        ============================================================ */
+        body.night-theme {
+            background: #121418;
+            color: #e8e8f0;
+        }
+
+        body.night-theme .agency-wrap {
+            background:
+                /* основные слои штукатурки */
+                radial-gradient(ellipse at 15% 25%, rgba(200, 200, 210, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 60%, rgba(180, 180, 195, 0.04) 0%, transparent 40%),
+                radial-gradient(ellipse at 45% 80%, rgba(220, 220, 230, 0.03) 0%, transparent 30%),
+                linear-gradient(145deg, #1a1c22 0%, #131518 25%, #1e2026 50%, #16181d 75%, #1a1c22 100%);
             position: relative;
         }
 
-        .radio::-webkit-scrollbar {
-            width: 5px;
-        }
-        .radio::-webkit-scrollbar-thumb {
-            background: var(--scrollbar);
-            border-radius: 10px;
-        }
-
-        .radio::before {
+        body.night-theme .agency-wrap::before {
             content: '';
-            position: absolute;
-            top: -2px;
-            left: 20%;
-            right: 20%;
-            height: 6px;
-            background: linear-gradient(90deg, transparent, var(--travco-gold), var(--accent-light), var(--travco-gold), transparent);
-            border-radius: 0 0 10px 10px;
-            opacity: 0.6;
-        }
-
-        /* ============================================================
-           Language Switcher + Theme Toggle
-           ============================================================ */
-        .top-controls {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
-            flex-wrap: wrap;
-        }
-
-        .lang-toggle, .theme-toggle {
-            background: var(--knob-bg);
-            border: 2px solid var(--vef-border);
-            border-radius: 40px;
-            padding: 5px 14px 5px 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            color: var(--text-secondary);
-            transition: 0.2s;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: inset 0 -3px 0 var(--knob-shadow);
-        }
-
-        .lang-toggle:hover, .theme-toggle:hover {
-            border-color: var(--travco-gold);
-        }
-
-        .lang-toggle i, .theme-toggle i {
-            font-size: 14px;
-        }
-
-        .lang-toggle .lang-flag {
-            font-size: 16px;
-            line-height: 1;
-        }
-
-        /* ============================================================
-           Logo Section
-           ============================================================ */
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 20px;
-            padding-top: 4px;
-        }
-
-        .logo-camel {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            flex-shrink: 0;
-            background: var(--logo-bg);
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-            border: 3px solid var(--travco-gold);
-            transition: background 0.3s;
-        }
-
-        .camel-svg {
-            width: 64px;
-            height: 64px;
-        }
-
-        .logo-text {
-            flex: 1;
-        }
-
-        .logo-text h1 {
-            font-size: 30px;
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        .logo-text h1 .gold {
-            color: var(--travco-gold);
-        }
-
-        .logo-text .sub {
-            font-size: 14px;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            font-weight: 300;
-            display: block;
-            margin-top: 2px;
-        }
-
-        .logo-text .sub i {
-            color: var(--travco-gold);
-            margin: 0 4px;
-        }
-
-        .travco-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--travco-dark);
-            color: var(--travco-gold);
-            padding: 4px 14px 4px 10px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            border: 1px solid var(--travco-gold);
-            margin-left: 10px;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .travco-badge:hover {
-            background: var(--travco-gold);
-            color: var(--travco-dark);
-        }
-
-        .travco-badge i {
-            font-size: 14px;
-        }
-
-        /* ============================================================
-           Display — VEF-style
-           ============================================================ */
-        .display {
-            background: var(--bg-display);
-            border-radius: 20px;
-            padding: 16px 22px 20px;
-            box-shadow: inset 0 6px 12px rgba(0,0,0,0.6), 0 4px 0 var(--vef-border);
-            border: 2px solid var(--vef-border);
-            transition: background 0.3s, border 0.3s;
-            margin-bottom: 18px;
-            position: relative;
-        }
-
-        .display::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(90deg,
-                transparent 0px,
-                transparent 3px,
-                rgba(255,255,255,0.02) 3px,
-                rgba(255,255,255,0.02) 4px);
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                /* волны — как песчаные холмы */
+                radial-gradient(ellipse at 20% 30%, rgba(160, 160, 180, 0.04) 0%, transparent 30%),
+                radial-gradient(ellipse at 65% 45%, rgba(180, 180, 200, 0.03) 0%, transparent 35%),
+                radial-gradient(ellipse at 40% 70%, rgba(150, 150, 170, 0.035) 0%, transparent 28%),
+                radial-gradient(ellipse at 80% 20%, rgba(190, 190, 210, 0.025) 0%, transparent 25%),
+                radial-gradient(ellipse at 10% 65%, rgba(170, 170, 190, 0.03) 0%, transparent 32%),
+                /* трещинки — тонкие линии */
+                repeating-linear-gradient(35deg,
+                    transparent 0px,
+                    transparent 80px,
+                    rgba(160, 160, 180, 0.015) 80px,
+                    rgba(160, 160, 180, 0.015) 81px,
+                    transparent 81px,
+                    transparent 160px
+                ),
+                repeating-linear-gradient(-25deg,
+                    transparent 0px,
+                    transparent 60px,
+                    rgba(170, 170, 190, 0.01) 60px,
+                    rgba(170, 170, 190, 0.01) 61px,
+                    transparent 61px,
+                    transparent 120px
+                ),
+                repeating-linear-gradient(65deg,
+                    transparent 0px,
+                    transparent 140px,
+                    rgba(150, 150, 170, 0.012) 140px,
+                    rgba(150, 150, 170, 0.012) 141px,
+                    transparent 141px,
+                    transparent 280px
+                ),
+                repeating-linear-gradient(-45deg,
+                    transparent 0px,
+                    transparent 200px,
+                    rgba(180, 180, 200, 0.008) 200px,
+                    rgba(180, 180, 200, 0.008) 201px,
+                    transparent 201px,
+                    transparent 400px
+                ),
+                /* мелкие трещинки */
+                repeating-linear-gradient(12deg,
+                    transparent 0px,
+                    transparent 300px,
+                    rgba(140, 140, 160, 0.005) 300px,
+                    rgba(140, 140, 160, 0.005) 301px,
+                    transparent 301px,
+                    transparent 600px
+                ),
+                repeating-linear-gradient(-68deg,
+                    transparent 0px,
+                    transparent 250px,
+                    rgba(155, 155, 175, 0.006) 250px,
+                    rgba(155, 155, 175, 0.006) 251px,
+                    transparent 251px,
+                    transparent 500px
+                ),
+                /* текстура штукатурки — зернистость */
+                radial-gradient(ellipse at 30% 40%, rgba(200, 200, 220, 0.02) 0%, transparent 15%),
+                radial-gradient(ellipse at 70% 55%, rgba(180, 180, 200, 0.015) 0%, transparent 20%),
+                radial-gradient(ellipse at 50% 85%, rgba(190, 190, 210, 0.01) 0%, transparent 25%),
+                /* дополнительные волны */
+                radial-gradient(ellipse at 85% 75%, rgba(170, 170, 190, 0.02) 0%, transparent 20%),
+                radial-gradient(ellipse at 5% 40%, rgba(160, 160, 180, 0.025) 0%, transparent 22%);
             pointer-events: none;
-            border-radius: 20px;
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.8s;
         }
 
-        .frequency-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            color: #7fd6ff;
-            text-shadow: 0 0 20px rgba(0,166,255,0.4), 0 0 60px rgba(0,102,255,0.15);
-            font-weight: 300;
-            letter-spacing: 1px;
+        /* ============================================================
+           ДНЕВНАЯ ТЕМА — венецианская штукатурка с золотыми волнами
+        ============================================================ */
+        body.day-theme {
+            background: #f5f0ea;
+            color: #2a2a3a;
+        }
+
+        body.day-theme .agency-wrap {
+            background:
+                /* основные слои штукатурки — тёплые песчаные тона */
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(218, 165, 32, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 40% 80%, rgba(200, 170, 60, 0.04) 0%, transparent 30%),
+                linear-gradient(145deg, #f5f0e8 0%, #ede8df 25%, #f0ebe2 50%, #e8e3da 75%, #f5f0e8 100%);
+            position: relative;
+        }
+
+        body.day-theme .agency-wrap::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                /* волны — как песчаные холмы (золотые оттенки) */
+                radial-gradient(ellipse at 25% 35%, rgba(212, 175, 55, 0.05) 0%, transparent 30%),
+                radial-gradient(ellipse at 65% 45%, rgba(218, 165, 32, 0.04) 0%, transparent 35%),
+                radial-gradient(ellipse at 45% 70%, rgba(200, 170, 60, 0.045) 0%, transparent 28%),
+                radial-gradient(ellipse at 80% 25%, rgba(212, 175, 55, 0.035) 0%, transparent 25%),
+                radial-gradient(ellipse at 15% 60%, rgba(210, 180, 50, 0.04) 0%, transparent 32%),
+                radial-gradient(ellipse at 55% 85%, rgba(195, 165, 55, 0.03) 0%, transparent 20%),
+                /* трещинки — золотые линии */
+                repeating-linear-gradient(35deg,
+                    transparent 0px,
+                    transparent 80px,
+                    rgba(212, 175, 55, 0.025) 80px,
+                    rgba(212, 175, 55, 0.025) 81px,
+                    transparent 81px,
+                    transparent 160px
+                ),
+                repeating-linear-gradient(-25deg,
+                    transparent 0px,
+                    transparent 60px,
+                    rgba(218, 165, 32, 0.02) 60px,
+                    rgba(218, 165, 32, 0.02) 61px,
+                    transparent 61px,
+                    transparent 120px
+                ),
+                repeating-linear-gradient(65deg,
+                    transparent 0px,
+                    transparent 140px,
+                    rgba(200, 170, 60, 0.018) 140px,
+                    rgba(200, 170, 60, 0.018) 141px,
+                    transparent 141px,
+                    transparent 280px
+                ),
+                repeating-linear-gradient(-45deg,
+                    transparent 0px,
+                    transparent 200px,
+                    rgba(212, 175, 55, 0.015) 200px,
+                    rgba(212, 175, 55, 0.015) 201px,
+                    transparent 201px,
+                    transparent 400px
+                ),
+                /* мелкие трещинки */
+                repeating-linear-gradient(12deg,
+                    transparent 0px,
+                    transparent 300px,
+                    rgba(205, 170, 50, 0.01) 300px,
+                    rgba(205, 170, 50, 0.01) 301px,
+                    transparent 301px,
+                    transparent 600px
+                ),
+                repeating-linear-gradient(-68deg,
+                    transparent 0px,
+                    transparent 250px,
+                    rgba(210, 175, 55, 0.012) 250px,
+                    rgba(210, 175, 55, 0.012) 251px,
+                    transparent 251px,
+                    transparent 500px
+                ),
+                /* текстура штукатурки — зернистость */
+                radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.03) 0%, transparent 15%),
+                radial-gradient(ellipse at 70% 55%, rgba(218, 165, 32, 0.02) 0%, transparent 20%),
+                radial-gradient(ellipse at 50% 85%, rgba(200, 170, 60, 0.015) 0%, transparent 25%),
+                /* дополнительные волны */
+                radial-gradient(ellipse at 85% 75%, rgba(212, 175, 55, 0.025) 0%, transparent 20%),
+                radial-gradient(ellipse at 5% 40%, rgba(210, 180, 50, 0.03) 0%, transparent 22%),
+                /* большие волны — рельеф холмов */
+                radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.02) 0%, transparent 40%),
+                radial-gradient(ellipse at 30% 60%, rgba(218, 165, 32, 0.015) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.8s;
+        }
+
+        /* ============================================================
+           ОБЩИЕ СТИЛИ
+        ============================================================ */
+        .agency-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.8rem 2rem 0 2rem;
+            min-height: 100vh;
+            position: relative;
+            transition: background 0.8s;
+        }
+
+        .header-gallery-block,
+        .hero-columns-block,
+        .player-window-block,
+        .footer-block {
             position: relative;
             z-index: 1;
         }
 
-        .freq-label {
-            font-size: 13px;
-            opacity: 0.6;
-            text-transform: uppercase;
-            color: #5a9a7a;
-            letter-spacing: 3px;
-        }
-
-        .freq-value {
-            font-size: 42px;
-            font-weight: 700;
-            font-family: 'Courier New', monospace;
-            background: rgba(0,0,0,0.2);
-            padding: 0 16px;
-            border-radius: 12px;
-            color: #7fd6ff;
-            text-shadow: 0 0 20px #00a6ff, 0 0 60px rgba(0,102,255,0.3);
-            letter-spacing: 4px;
-            box-shadow: 0 0 0 1px rgba(100,200,255,0.2) inset;
-            cursor: pointer;
-            user-select: none;
-            min-width: 120px;
-            text-align: center;
-            transition: 0.2s;
-        }
-
-        .freq-value:hover {
-            background: rgba(0,0,0,0.3);
-        }
-
-        .freq-unit {
-            font-size: 16px;
-            opacity: 0.5;
-            color: #5a9a7a;
-            letter-spacing: 2px;
-        }
-
-        .meter-row {
+        /* ============================================================
+           ОСТАЛЬНЫЕ СТИЛИ (сокращённо — все основные элементы)
+        ============================================================ */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 14px;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            transition: background 0.5s, border 0.5s;
+        }
+
+        body.night-theme .navbar {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        body.day-theme .navbar {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
             gap: 14px;
-            position: relative;
-            z-index: 1;
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: color 0.5s;
         }
 
-        .signal-meter {
-            flex: 1;
-            height: 14px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 20px;
-            box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
-            overflow: hidden;
-            border: 1px solid rgba(100,200,255,0.1);
+        body.night-theme .logo {
+            color: #fff;
+            text-shadow: 0 0 40px rgba(180, 120, 255, 0.2);
         }
 
-        .signal-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--signal-fill);
-            border-radius: 20px;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 24px #44ff88;
+        body.day-theme .logo {
+            color: #2a2a3a;
+            text-shadow: none;
         }
 
-        .status-led {
+        .logo i {
+            font-size: 2.4rem;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .logo i {
+            color: #b388ff;
+            filter: drop-shadow(0 0 20px rgba(180, 120, 255, 0.3));
+        }
+
+        body.day-theme .logo i {
+            color: #b8860b;
+            filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.15));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .nav-links {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        body.day-theme .nav-links {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b388ff;
+            color: #b388ff;
+        }
+
+        .btn-outline {
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: default;
+        }
+
+        body.night-theme .btn-outline {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.day-theme .btn-outline {
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-outline i {
+            margin-right: 6px;
+        }
+
+        .theme-toggle-wrapper {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: var(--text-secondary);
-            font-size: 13px;
-            background: var(--input-bg);
-            padding: 5px 16px 5px 10px;
-            border-radius: 40px;
-            box-shadow: 0 0 0 1px var(--vef-border);
-            white-space: nowrap;
-            font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
-        .led {
-            width: 14px;
-            height: 14px;
+        .theme-toggle {
+            position: relative;
+            width: 48px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        body.day-theme .theme-toggle {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.15);
+        }
+
+        .theme-toggle .toggle-circle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            background: var(--led-off);
-            box-shadow: none;
-            transition: 0.2s;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #b388ff;
+            box-shadow: 0 2px 12px rgba(180, 120, 255, 0.4);
+            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .led.on {
-            background: var(--led-on);
-            box-shadow: 0 0 16px var(--led-on), 0 0 40px rgba(68,255,136,0.2);
+        body.day-theme .theme-toggle .toggle-circle {
+            left: 22px;
+            background: #d4af37;
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
         }
 
-        .led.buffering {
-            background: var(--led-buffering);
-            box-shadow: 0 0 16px var(--led-buffering);
-            animation: blink 0.5s infinite;
+        .theme-toggle .toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            transition: 0.3s;
+            z-index: 2;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.2; }
-        }
+        .theme-toggle .toggle-icon.sun { right: 4px; }
+        body.night-theme .theme-toggle .toggle-icon.sun { opacity: 0.3; }
+        body.day-theme .theme-toggle .toggle-icon.sun { opacity: 1; }
 
-        /* ============================================================
-           Controls
-           ============================================================ */
-        .controls {
-            margin-top: 8px;
+        .theme-toggle .toggle-icon.moon { left: 4px; }
+        body.night-theme .theme-toggle .toggle-icon.moon { opacity: 1; }
+        body.day-theme .theme-toggle .toggle-icon.moon { opacity: 0.3; }
+
+        .lang-selector {
             display: flex;
-            flex-direction: column;
-            gap: 16px;
+            gap: 4px;
+            align-items: center;
+            padding: 0 4px;
         }
 
-        .tuning-area {
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+
+        body.night-theme .lang-btn {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        body.day-theme .lang-btn {
+            color: rgba(0, 0, 0, 0.4);
+        }
+        .lang-btn:hover { color: #b388ff; }
+        .lang-btn.active { color: #b388ff; }
+
+        body.night-theme .lang-btn.active {
+            background: rgba(180, 120, 255, 0.15);
+        }
+        body.day-theme .lang-btn.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: #b8860b;
+        }
+
+        .lang-divider {
+            font-size: 12px;
+        }
+        body.night-theme .lang-divider {
+            color: rgba(255, 255, 255, 0.1);
+        }
+        body.day-theme .lang-divider {
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-placeholder {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 14px;
+            justify-content: center;
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            transition: background 0.5s, border 0.5s, transform 0.3s;
+            background: linear-gradient(145deg, rgba(180, 120, 255, 0.15), rgba(124, 77, 255, 0.05));
+            border: 2px solid rgba(180, 120, 255, 0.2);
+            box-shadow: 0 0 40px rgba(180, 120, 255, 0.05);
+            cursor: pointer;
+        }
+
+        body.day-theme .avatar-placeholder {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02));
+            border: 2px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .avatar-placeholder:hover { transform: scale(1.05); }
+
+        body.night-theme .avatar-placeholder i { color: rgba(180, 120, 255, 0.5); }
+        body.day-theme .avatar-placeholder i { color: rgba(212, 175, 55, 0.4); }
+
+        .avatar-placeholder .upload-hint {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            font-size: 14px;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(180, 120, 255, 0.3);
+        }
+
+        body.night-theme .avatar-placeholder .upload-hint {
+            background: #b388ff;
+        }
+        body.day-theme .avatar-placeholder .upload-hint {
+            background: #d4af37;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .tuning-label {
-            color: var(--text-secondary);
-            font-size: 13px;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s, box-shadow 0.4s;
+            cursor: default;
+        }
+
+        body.night-theme .gallery-item {
+            background: linear-gradient(145deg, rgba(60, 40, 80, 0.6), rgba(30, 20, 50, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        body.day-theme .gallery-item {
+            background: linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(184, 134, 11, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+            color: #fff;
             font-weight: 600;
-            letter-spacing: 1px;
-            min-width: 50px;
-            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
         }
 
-        .slider-container {
-            flex: 1;
-            min-width: 160px;
+        .gallery-item .overlay i {
+            margin-right: 8px;
         }
 
-        input[type="range"] {
-            -webkit-appearance: none;
+        body.night-theme .gallery-item .overlay i { color: #b388ff; }
+        body.day-theme .gallery-item .overlay i { color: #d4af37; }
+
+        .hero-columns-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2.2rem 0 3rem 0;
+            align-items: center;
+        }
+
+        .hero-text-col .badge {
+            display: inline-block;
+            padding: 0.3rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+            transition: background 0.5s, color 0.5s, border 0.5s;
+        }
+
+        body.night-theme .hero-text-col .badge {
+            background: rgba(180, 120, 255, 0.15);
+            color: #b388ff;
+            border: 1px solid rgba(180, 120, 255, 0.15);
+        }
+
+        body.day-theme .hero-text-col .badge {
+            background: rgba(212, 175, 55, 0.12);
+            color: #b8860b;
+            border: 1px solid rgba(212, 175, 55, 0.12);
+        }
+
+        .hero-text-col h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .hero-text-col h1 {
+            color: #fff;
+            text-shadow: 0 0 60px rgba(180, 120, 255, 0.1);
+        }
+
+        body.day-theme .hero-text-col h1 {
+            color: #1a1a2e;
+            text-shadow: none;
+        }
+
+        .hero-text-col h1 i {
+            font-size: 3rem;
+            margin-right: 0.2rem;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .hero-text-col h1 i {
+            color: #b388ff;
+            filter: drop-shadow(0 0 30px rgba(180, 120, 255, 0.3));
+        }
+
+        body.day-theme .hero-text-col h1 i {
+            color: #d4af37;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2));
+        }
+
+        .hero-text-col h1 .highlight {
+            background: linear-gradient(135deg, #b388ff, #7c4dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.day-theme .hero-text-col h1 .highlight {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text-col p {
+            font-size: 1.15rem;
+            max-width: 460px;
+            font-weight: 400;
+            margin-bottom: 1.8rem;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .hero-text-col p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        body.day-theme .hero-text-col p {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            border: none;
+            padding: 0.9rem 2.6rem;
+            border-radius: 80px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: default;
+            transition: 0.3s;
+        }
+
+        body.night-theme .btn-primary {
+            background: linear-gradient(135deg, #b388ff, #7c4dff);
+            box-shadow: 0 8px 40px rgba(180, 120, 255, 0.3);
+        }
+
+        body.day-theme .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+        }
+
+        .widget-box {
+            border-radius: 48px;
+            padding: 2.8rem 3rem 3rem 3rem;
             width: 100%;
-            height: 8px;
-            border-radius: 10px;
-            background: var(--input-bg);
-            box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
-            outline: none;
-            transition: 0.2s;
-            border: 1px solid var(--vef-border);
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s;
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 26px;
-            height: 26px;
+        body.night-theme .widget-box {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5), 0 0 120px rgba(180, 120, 255, 0.05);
+        }
+
+        body.day-theme .widget-box {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05), 0 0 60px rgba(212, 175, 55, 0.02);
+        }
+
+        .widget-box .widget-icon {
+            font-size: 4.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        body.night-theme .widget-box .widget-icon {
+            color: #b388ff;
+            filter: drop-shadow(0 0 40px rgba(180, 120, 255, 0.3));
+            animation: glowPulse 3s infinite;
+        }
+
+        body.day-theme .widget-box .widget-icon {
+            color: #d4af37;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.15));
+            animation: glowPulseGold 3s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(180, 120, 255, 0.2)); }
+            50% { filter: drop-shadow(0 0 60px rgba(180, 120, 255, 0.5)); }
+        }
+
+        @keyframes glowPulseGold {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.15)); }
+            50% { filter: drop-shadow(0 0 60px rgba(212, 175, 55, 0.3)); }
+        }
+
+        .widget-box h3 {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.5px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .widget-box h3 { color: #fff; }
+        body.day-theme .widget-box h3 { color: #1a1a2e; }
+
+        .widget-box .sub {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .widget-box .sub { color: rgba(255, 255, 255, 0.5); }
+        body.day-theme .widget-box .sub { color: rgba(0, 0, 0, 0.4); }
+
+        .widget-box .mini-player {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 1.8rem;
+            border-radius: 80px;
+            transition: background 0.5s, border 0.5s;
+        }
+
+        body.night-theme .widget-box .mini-player {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        body.day-theme .widget-box .mini-player {
+            background: rgba(212, 175, 55, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+        }
+
+        .mini-player i {
+            font-size: 1.6rem;
+            transition: 0.3s, color 0.5s;
+            cursor: default;
+        }
+
+        body.night-theme .mini-player i { color: rgba(255, 255, 255, 0.5); }
+        body.day-theme .mini-player i { color: rgba(0, 0, 0, 0.3); }
+        .mini-player i:hover { color: #b388ff; transform: scale(1.1); }
+
+        body.day-theme .mini-player i:hover { color: #d4af37; }
+
+        .mini-player .play-circle {
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #d4e8ff, #3d7b9e);
-            cursor: pointer;
-            border: 2px solid #b0ddf5;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5), 0 0 30px rgba(0,153,255,0.2);
-            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            cursor: default;
         }
 
-        input[type="range"]::-webkit-slider-thumb:hover {
+        body.night-theme .mini-player .play-circle {
+            background: linear-gradient(135deg, #b388ff, #7c4dff);
+            box-shadow: 0 8px 30px rgba(180, 120, 255, 0.4);
+        }
+
+        body.day-theme .mini-player .play-circle {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .mini-player .play-circle:hover { transform: scale(1.05); }
+
+        .widget-box .listener-count {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .widget-box .listener-count { color: rgba(255, 255, 255, 0.4); }
+        body.day-theme .widget-box .listener-count { color: rgba(0, 0, 0, 0.3); }
+
+        .widget-box .listener-count i {
+            margin-right: 6px;
+        }
+        body.night-theme .widget-box .listener-count i { color: #b388ff; }
+        body.day-theme .widget-box .listener-count i { color: #d4af37; }
+
+        .fullscreen-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+            z-index: 10;
+        }
+
+        body.night-theme .fullscreen-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        body.day-theme .fullscreen-btn {
+            background: rgba(212, 175, 55, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(180, 120, 255, 0.15);
+            color: #b388ff;
             transform: scale(1.05);
         }
 
-        .freq-buttons {
-            display: flex;
-            gap: 6px;
+        body.day-theme .fullscreen-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
         }
 
-        .freq-btn {
-            background: var(--knob-bg);
-            border: 2px solid var(--vef-border);
-            color: var(--text-secondary);
-            font-size: 20px;
+        .player-window {
+            border-radius: 40px;
+            padding: 2rem 2.5rem;
+            transition: background 0.5s, border 0.5s, box-shadow 0.5s;
+        }
+
+        body.night-theme .player-window {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        body.day-theme .player-window {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .radio-embed .radio {
+            max-width: 100%;
+            width: 100%;
+            border-radius: 40px;
+            padding: 30px 28px 35px;
+            transition: background 0.5s, box-shadow 0.5s, border 0.5s;
+            max-height: 98vh;
+            overflow-y: auto;
+            margin: 0 auto;
+        }
+
+        body.night-theme .radio-embed .radio {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.day-theme .radio-embed .radio {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.04), 0 20px 60px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.04);
+        }
+
+        .radio-embed .radio::-webkit-scrollbar { width: 4px; }
+        .radio-embed .radio::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+        }
+        body.night-theme .radio-embed .radio::-webkit-scrollbar-thumb {
+            background: rgba(180, 120, 255, 0.3);
+        }
+        body.day-theme .radio-embed .radio::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        .radio-embed .display {
+            border-radius: 32px;
+            padding: 20px 24px 24px;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 8px 32px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background 0.5s;
+        }
+
+        body.night-theme .radio-embed .display { background: rgba(0, 0, 0, 0.4); }
+        body.day-theme .radio-embed .display { background: rgba(255, 255, 255, 0.15); }
+
+        .radio-embed .frequency-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        body.night-theme .radio-embed .frequency-section {
+            color: #b388ff;
+            text-shadow: 0 0 30px rgba(180, 120, 255, 0.2);
+        }
+
+        body.day-theme .radio-embed .frequency-section {
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .radio-embed .freq-label {
+            font-size: 13px;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .radio-embed .freq-value {
+            font-size: 38px;
             font-weight: 700;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            box-shadow: 0 5px 0 var(--knob-shadow);
+            font-family: 'Courier New', monospace;
+            padding: 0 16px;
+            border-radius: 30px;
+            letter-spacing: 4px;
             cursor: pointer;
-            transition: 0.06s linear;
+            user-select: none;
+            min-width: 100px;
+            display: inline-block;
+            text-align: center;
+            transition: background 0.5s, color 0.5s, text-shadow 0.5s;
+        }
+
+        body.night-theme .radio-embed .freq-value {
+            background: rgba(0, 0, 0, 0.3);
+            color: #b388ff;
+            text-shadow: 0 0 40px rgba(180, 120, 255, 0.3);
+        }
+
+        body.day-theme .radio-embed .freq-value {
+            background: rgba(255, 255, 255, 0.3);
+            color: #b8860b;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .radio-embed .meter-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            gap: 12px;
+        }
+
+        .radio-embed .signal-meter {
+            flex: 1;
+            height: 6px;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: background 0.5s;
+        }
+
+        body.night-theme .radio-embed .signal-meter { background: rgba(255, 255, 255, 0.04); }
+        body.day-theme .radio-embed .signal-meter { background: rgba(0, 0, 0, 0.04); }
+
+        .radio-embed .signal-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        body.night-theme .radio-embed .signal-fill {
+            background: linear-gradient(90deg, #b388ff, #7c4dff, #b388ff);
+            box-shadow: 0 0 30px rgba(180, 120, 255, 0.3);
+        }
+
+        body.day-theme .radio-embed .signal-fill {
+            background: linear-gradient(90deg, #d4af37, #b8860b, #d4af37);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .radio-embed .status-led {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            padding: 4px 14px 4px 8px;
+            border-radius: 40px;
+            white-space: nowrap;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        body.night-theme .radio-embed .status-led {
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        body.day-theme .radio-embed .status-led {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .radio-embed .led {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+
+        body.night-theme .radio-embed .led {
+            background: #b388ff;
+            box-shadow: 0 0 20px rgba(180, 120, 255, 0.5);
+        }
+
+        body.day-theme .radio-embed .led {
+            background: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .radio-embed .led.off {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+        .radio-embed .led.buffering {
+            background: #ffd54f;
+            box-shadow: 0 0 20px rgba(255, 213, 79, 0.5);
+            animation: blink 0.5s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+        .radio-embed .controls { margin-top: 22px; display: flex; flex-direction: column; gap: 18px; }
+        .radio-embed .tuning-area { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+        .radio-embed .tuning-label {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            min-width: 50px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .radio-embed .tuning-label { color: rgba(255, 255, 255, 0.5); }
+        body.day-theme .radio-embed .tuning-label { color: rgba(0, 0, 0, 0.4); }
+
+        .radio-embed .slider-container { flex: 1; min-width: 140px; }
+
+        .radio-embed input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 4px;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.2s, background 0.5s;
+        }
+
+        body.night-theme .radio-embed input[type="range"] { background: rgba(255, 255, 255, 0.06); }
+        body.day-theme .radio-embed input[type="range"] { background: rgba(0, 0, 0, 0.06); }
+
+        .radio-embed input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: 0.2s;
+        }
+
+        body.night-theme .radio-embed input[type="range"]::-webkit-slider-thumb {
+            background: radial-gradient(circle at 30% 30%, #b388ff, #7c4dff);
+            box-shadow: 0 0 30px rgba(180, 120, 255, 0.3);
+        }
+
+        body.day-theme .radio-embed input[type="range"]::-webkit-slider-thumb {
+            background: radial-gradient(circle at 30% 30%, #d4af37, #b8860b);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .radio-embed input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+
+        .radio-embed .freq-buttons { display: flex; gap: 6px; }
+
+        .radio-embed .freq-btn {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 18px;
+            font-weight: 700;
+            width: 38px;
+            height: 38px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 1;
         }
 
-        .freq-btn:active {
-            transform: translateY(5px);
-            box-shadow: 0 1px 0 var(--knob-shadow);
+        body.night-theme .freq-btn {
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        body.day-theme .freq-btn {
+            background: rgba(212, 175, 55, 0.04);
+            color: rgba(0, 0, 0, 0.4);
         }
 
-        .action-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
+        body.night-theme .freq-btn:hover {
+            background: rgba(180, 120, 255, 0.15);
+            color: #b388ff;
+        }
+        body.day-theme .freq-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
         }
 
-        .power-btn {
-            background: var(--knob-bg);
-            border: 2px solid var(--vef-border);
-            color: var(--text-secondary);
+        .radio-embed .action-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+        .radio-embed .power-btn {
             font-size: 16px;
-            font-weight: 700;
-            padding: 12px 24px;
+            font-weight: 600;
+            padding: 10px 22px;
             border-radius: 60px;
-            box-shadow: 0 6px 0 var(--knob-shadow);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             cursor: pointer;
-            transition: 0.06s linear;
+            transition: 0.3s;
             flex: 1;
             justify-content: center;
-            letter-spacing: 1px;
-            min-width: 140px;
+            letter-spacing: 0.5px;
         }
 
-        .power-btn:active {
-            transform: translateY(6px);
-            box-shadow: 0 1px 0 var(--knob-shadow);
+        body.night-theme .power-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        body.day-theme .power-btn {
+            background: rgba(212, 175, 55, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            color: rgba(0, 0, 0, 0.4);
         }
 
-        .power-btn.on {
-            background: var(--travco-gold);
-            color: #fff;
-            border-color: var(--travco-gold);
-            box-shadow: 0 6px 0 #6a4f0a;
+        body.night-theme .power-btn:hover {
+            background: rgba(180, 120, 255, 0.1);
+            color: #b388ff;
+        }
+        body.day-theme .power-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
         }
 
-        .volume-area {
+        body.night-theme .radio-embed .power-btn.on {
+            background: linear-gradient(135deg, rgba(180, 120, 255, 0.2), rgba(124, 77, 255, 0.2));
+            border-color: rgba(180, 120, 255, 0.2);
+            color: #b388ff;
+            box-shadow: 0 0 40px rgba(180, 120, 255, 0.1);
+        }
+
+        body.day-theme .radio-embed .power-btn.on {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(184, 134, 11, 0.15));
+            border-color: rgba(212, 175, 55, 0.15);
+            color: #b8860b;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .radio-embed .volume-area {
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--text-secondary);
             font-size: 14px;
             flex: 0.8;
-            min-width: 120px;
+            transition: color 0.5s;
         }
 
-        .volume-area input[type="range"] {
-            flex: 1;
-            min-width: 60px;
-        }
+        body.night-theme .radio-embed .volume-area { color: rgba(255, 255, 255, 0.4); }
+        body.day-theme .radio-embed .volume-area { color: rgba(0, 0, 0, 0.3); }
 
-        .vol-icon {
-            font-size: 20px;
-        }
+        .radio-embed .volume-area input[type="range"] { flex: 1; min-width: 70px; }
 
-        /* ============================================================
-           Station Name
-           ============================================================ */
-        .station-name {
-            margin-top: 16px;
+        .radio-embed .station-name {
+            margin-top: 18px;
             text-align: center;
-            color: var(--text-secondary);
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 16px;
+            font-weight: 300;
             letter-spacing: 1px;
-            border-top: 2px solid var(--vef-border);
-            padding-top: 16px;
-            opacity: 0.95;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 18px;
+            opacity: 0.9;
             cursor: pointer;
             user-select: none;
-            min-height: 50px;
-            transition: color 0.3s, border 0.3s;
-            background: var(--input-bg);
-            border-radius: 16px;
-            padding: 14px 20px;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+            min-height: 45px;
+            transition: color 0.5s;
         }
 
-        .station-name .station-title {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
+        body.night-theme .radio-embed .station-name { color: rgba(255, 255, 255, 0.5); }
+        body.day-theme .radio-embed .station-name { color: rgba(0, 0, 0, 0.4); }
 
-        .station-name .station-meta {
-            font-size: 13px;
-            opacity: 0.7;
-            margin-left: 8px;
-        }
+        .radio-embed .station-name span { font-weight: 600; }
+        body.night-theme .radio-embed .station-name span { color: #fff; }
+        body.day-theme .radio-embed .station-name span { color: #1a1a2e; }
 
-        .audio-badge {
+        .radio-embed .audio-badge {
             display: inline-block;
-            background: #00aa55;
-            color: #000;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            padding: 3px 14px;
+            padding: 2px 12px;
             border-radius: 30px;
             margin-left: 10px;
             letter-spacing: 0.5px;
@@ -597,21 +1286,32 @@
             animation: pulse 1.5s infinite;
         }
 
-        .audio-badge.off {
-            background: #555;
+        body.night-theme .radio-embed .audio-badge {
+            background: linear-gradient(135deg, #b388ff, #7c4dff);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(180, 120, 255, 0.2);
+        }
+
+        body.day-theme .radio-embed .audio-badge {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+
+        .radio-embed .audio-badge.off {
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.3);
             animation: none;
-            color: #aaa;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        body.day-theme .radio-embed .audio-badge.off {
+            background: rgba(0, 0, 0, 0.04);
+            color: rgba(0, 0, 0, 0.2);
         }
 
-        /* ============================================================
-           Genre Filter
-           ============================================================ */
-        .genre-filter {
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+        .radio-embed .genre-filter {
             margin-top: 14px;
             display: flex;
             gap: 6px;
@@ -619,639 +1319,853 @@
             justify-content: center;
         }
 
-        .genre-btn {
-            background: var(--input-bg);
-            border: 2px solid var(--vef-border);
-            color: var(--text-secondary);
-            padding: 6px 16px;
+        .radio-embed .genre-btn {
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 4px 14px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 10px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            font-weight: 600;
-            box-shadow: 0 3px 0 var(--knob-shadow);
         }
 
-        .genre-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 var(--knob-shadow);
+        body.night-theme .genre-btn {
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
+        }
+        body.day-theme .genre-btn {
+            background: rgba(212, 175, 55, 0.04);
+            color: rgba(0, 0, 0, 0.3);
         }
 
-        .genre-btn:hover {
-            border-color: var(--travco-gold);
-            color: var(--travco-gold);
+        body.night-theme .genre-btn:hover {
+            background: rgba(180, 120, 255, 0.1);
+            color: #b388ff;
         }
-        .genre-btn.active {
-            background: var(--travco-gold);
-            border-color: var(--travco-gold);
-            color: #fff;
-            box-shadow: 0 3px 0 #6a4f0a;
+        body.day-theme .genre-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
         }
 
-        /* ============================================================
-           Station Grid
-           ============================================================ */
-        .station-grid {
+        body.night-theme .genre-btn.active {
+            background: rgba(180, 120, 255, 0.15);
+            border-color: rgba(180, 120, 255, 0.2);
+            color: #b388ff;
+        }
+
+        body.day-theme .genre-btn.active {
+            background: rgba(212, 175, 55, 0.12);
+            border-color: rgba(212, 175, 55, 0.15);
+            color: #b8860b;
+        }
+
+        .radio-embed .station-grid {
             margin-top: 14px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 8px;
-            max-height: 280px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 6px;
+            max-height: 320px;
             overflow-y: auto;
             padding-right: 4px;
         }
 
-        .station-grid::-webkit-scrollbar {
-            width: 4px;
+        .radio-embed .station-grid::-webkit-scrollbar { width: 3px; }
+        .radio-embed .station-grid::-webkit-scrollbar-thumb { border-radius: 10px; }
+        body.night-theme .radio-embed .station-grid::-webkit-scrollbar-thumb {
+            background: rgba(180, 120, 255, 0.3);
         }
-        .station-grid::-webkit-scrollbar-thumb {
-            background: var(--scrollbar);
-            border-radius: 10px;
+        body.day-theme .radio-embed .station-grid::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
         }
 
-        .station-preset {
-            background: var(--input-bg);
-            border: 2px solid var(--vef-border);
-            color: var(--text-secondary);
-            padding: 8px 12px;
-            border-radius: 16px;
-            font-size: 12px;
+        .radio-embed .station-preset {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 6px 10px;
+            border-radius: 30px;
+            font-size: 10px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             text-align: center;
+            white-space: nowrap;
             overflow: hidden;
-            box-shadow: 0 3px 0 var(--knob-shadow);
-            font-weight: 500;
+            text-overflow: ellipsis;
         }
 
-        .station-preset:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 var(--knob-shadow);
+        body.night-theme .station-preset {
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        body.day-theme .station-preset {
+            background: rgba(212, 175, 55, 0.02);
+            color: rgba(0, 0, 0, 0.4);
         }
 
-        .station-preset:hover {
-            background: var(--card-hover);
-            border-color: var(--travco-gold);
-            transform: scale(1.02);
+        body.night-theme .station-preset:hover {
+            background: rgba(180, 120, 255, 0.08);
+            border-color: rgba(180, 120, 255, 0.15);
+            color: #b388ff;
         }
-        .station-preset.active {
-            background: var(--travco-gold);
-            border-color: var(--travco-gold);
-            color: #fff;
-            box-shadow: 0 3px 0 #6a4f0a, 0 0 30px rgba(184,134,11,0.3);
+
+        body.day-theme .station-preset:hover {
+            background: rgba(212, 175, 55, 0.06);
+            border-color: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
         }
-        .station-preset .genre-tag {
-            font-size: 9px;
-            opacity: 0.6;
+
+        .station-preset:hover { transform: scale(1.02); }
+
+        body.night-theme .station-preset.active {
+            background: rgba(180, 120, 255, 0.12);
+            border-color: rgba(180, 120, 255, 0.2);
+            color: #b388ff;
+            box-shadow: 0 0 30px rgba(180, 120, 255, 0.05);
+        }
+
+        body.day-theme .station-preset.active {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.15);
+            color: #b8860b;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.03);
+        }
+
+        .radio-embed .station-preset .genre-tag {
+            font-size: 8px;
+            opacity: 0.4;
             display: block;
-            margin-top: 3px;
-            font-weight: 400;
-        }
-        .station-preset .country-tag {
-            font-size: 9px;
-            opacity: 0.5;
-            display: block;
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
-        .loading-spinner {
+        .radio-embed .loading-spinner {
             text-align: center;
-            color: var(--text-muted);
-            padding: 24px;
-            font-size: 14px;
-            grid-column: 1 / -1;
-        }
-
-        .loading-spinner i {
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .error-msg {
-            color: #ff8866;
+            padding: 20px;
             font-size: 13px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .radio-embed .loading-spinner { color: rgba(255, 255, 255, 0.3); }
+        body.day-theme .radio-embed .loading-spinner { color: rgba(0, 0, 0, 0.2); }
+
+        .radio-embed .loading-spinner i {
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+        body.night-theme .radio-embed .loading-spinner i { color: #b388ff; }
+        body.day-theme .radio-embed .loading-spinner i { color: #d4af37; }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .radio-embed .error-msg {
+            color: #ff6b6b;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 6px;
+            display: none;
+        }
+        .radio-embed .error-msg.show { display: block; }
+
+        .radio-embed .station-count {
+            font-size: 10px;
             text-align: center;
             margin-top: 8px;
-            display: none;
-            font-weight: 600;
-        }
-        .error-msg.show {
-            display: block;
-        }
-
-        .station-count {
-            color: var(--text-muted);
-            font-size: 12px;
-            text-align: center;
-            margin-top: 10px;
-            font-weight: 300;
             letter-spacing: 0.5px;
+            transition: color 0.5s;
         }
 
-        /* ============================================================
-           Mini Map — Port Galib, Egypt
-           ============================================================ */
-        .mini-map {
+        body.night-theme .radio-embed .station-count { color: rgba(255, 255, 255, 0.2); }
+        body.day-theme .radio-embed .station-count { color: rgba(0, 0, 0, 0.15); }
+
+        .radio-embed .lang-hint {
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 2px;
             margin-top: 16px;
+            padding-top: 14px;
+            opacity: 0.6;
+            transition: color 0.5s, border-color 0.5s;
+        }
+
+        body.night-theme .radio-embed .lang-hint {
+            color: rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        body.day-theme .radio-embed .lang-hint {
+            color: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(212, 175, 55, 0.04);
+        }
+
+        .radio-embed .lang-hint i {
+            margin: 0 4px;
+        }
+        body.night-theme .radio-embed .lang-hint i { color: rgba(180, 120, 255, 0.3); }
+        body.day-theme .radio-embed .lang-hint i { color: rgba(212, 175, 55, 0.2); }
+
+        .footer-block {
+            margin-top: 2.5rem;
+            padding: 2.5rem 0 1.8rem 0;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        body.night-theme .footer-block { border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        body.day-theme .footer-block { border-top: 1px solid rgba(212, 175, 55, 0.04); }
+
+        .footer-col h4 {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .footer-col h4 { color: rgba(255, 255, 255, 0.8); }
+        body.day-theme .footer-col h4 { color: rgba(0, 0, 0, 0.7); }
+
+        .footer-col p, .footer-col a {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s, color 0.5s;
+        }
+
+        body.night-theme .footer-col p, body.night-theme .footer-col a {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        body.day-theme .footer-col p, body.day-theme .footer-col a {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        body.night-theme .footer-col a:hover { color: #b388ff; }
+        body.day-theme .footer-col a:hover { color: #d4af37; }
+
+        .footer-col .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-col .social-icons i {
+            font-size: 1.4rem;
+            transition: 0.3s, color 0.5s;
+            cursor: default;
+        }
+
+        body.night-theme .footer-col .social-icons i { color: rgba(255, 255, 255, 0.2); }
+        body.day-theme .footer-col .social-icons i { color: rgba(0, 0, 0, 0.2); }
+
+        body.night-theme .footer-col .social-icons i:hover {
+            color: #b388ff;
+            transform: translateY(-2px);
+        }
+        body.day-theme .footer-col .social-icons i:hover {
+            color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            grid-column: 1 / -1;
+            padding-top: 1.5rem;
+            margin-top: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            font-size: 0.75rem;
+            transition: color 0.5s, border-color 0.5s;
+        }
+
+        body.night-theme .footer-bottom {
+            color: rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        body.day-theme .footer-bottom {
+            color: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(212, 175, 55, 0.04);
+        }
+
+        .footer-bottom .heart { color: #b388ff; }
+        body.day-theme .footer-bottom .heart { color: #d4af37; }
+
+        .map-wrapper { width: 100%; max-width: 100%; }
+
+        .map-wrapper .map-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            transition: color 0.5s;
+        }
+
+        body.night-theme .map-wrapper .map-label { color: rgba(255, 255, 255, 0.3); }
+        body.day-theme .map-wrapper .map-label { color: rgba(0, 0, 0, 0.3); }
+
+        .map-container {
+            position: relative;
+            width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            border: 2px solid var(--vef-border);
-            background: var(--map-bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: background 0.3s, border 0.3s;
-            position: relative;
-            height: 100px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: 0.3s, box-shadow 0.3s;
+            aspect-ratio: 16 / 9;
+            background: #0a0e1a;
         }
 
-        .mini-map iframe {
+        body.night-theme .map-container { border: 1px solid rgba(255, 255, 255, 0.04); }
+        body.day-theme .map-container { border: 1px solid rgba(212, 175, 55, 0.04); }
+
+        .map-container:hover {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .map-container iframe {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
         }
 
-        .map-caption {
+        .map-fullscreen-btn {
             position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            font-size: 11px;
-            padding: 3px 16px;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            backdrop-filter: blur(4px);
-            font-weight: 500;
-            pointer-events: none;
+            top: 8px;
+            right: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.8rem;
+            z-index: 5;
         }
 
-        .map-caption i {
-            color: #ff6b6b;
-            margin-right: 4px;
+        body.night-theme .map-fullscreen-btn {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* ============================================================
-           Footer
-           ============================================================ */
-        .footer-credit {
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 2px solid var(--vef-border);
-            text-align: center;
-            font-size: 12px;
-            color: var(--footer-color);
-            letter-spacing: 0.8px;
-            line-height: 1.8;
-            transition: color 0.3s, border 0.3s;
+        body.day-theme .map-fullscreen-btn {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.06);
+            color: rgba(0, 0, 0, 0.5);
         }
 
-        .footer-credit .heart {
-            color: var(--travco-gold);
-            display: inline-block;
-            animation: heartbeat 1.5s ease-in-out infinite;
+        body.night-theme .map-fullscreen-btn:hover {
+            background: rgba(180, 120, 255, 0.2);
+            color: #b388ff;
+        }
+        body.day-theme .map-fullscreen-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
         }
 
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        .map-fullscreen-btn:hover { transform: scale(1.05); }
+
+        .map-container.fullscreen-map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            border-radius: 0;
+            z-index: 9998;
+            border: none;
+            box-shadow: none;
+            animation: fullscreenIn 0.4s ease;
+            aspect-ratio: auto;
         }
 
-        .footer-credit .highlight {
+        .map-container.fullscreen-map iframe { border-radius: 0; }
+
+        .map-container.fullscreen-map .map-fullscreen-btn {
+            top: 20px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fullscreenIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+
+        .arabic-slogan {
+            font-family: 'Noto Kufi Arabic', 'Segoe UI', sans-serif;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            margin-top: 6px;
+            text-align: center;
+            letter-spacing: 0.5px;
+            direction: rtl;
+            transition: color 0.5s;
         }
 
-        .footer-credit .location {
-            display: inline-block;
-            margin: 0 4px;
+        body.night-theme .arabic-slogan { color: rgba(255, 255, 255, 0.2); }
+        body.day-theme .arabic-slogan { color: rgba(0, 0, 0, 0.2); }
+
+        .footer-credits {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 1.2rem 0 0.5rem 0;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+            transition: color 0.5s, border-color 0.5s;
         }
 
-        .footer-credit i {
-            margin: 0 4px;
-            opacity: 0.7;
+        body.night-theme .footer-credits {
+            color: rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        .footer-credit .travco-link {
-            color: var(--travco-gold);
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.2s;
+        body.day-theme .footer-credits {
+            color: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(212, 175, 55, 0.03);
         }
 
-        .footer-credit .travco-link:hover {
-            text-decoration: underline;
+        .footer-credits .highlight-text {
+            transition: color 0.5s;
         }
 
-        /* ============================================================
-           Responsive
-           ============================================================ */
-        @media (max-width: 767px) {
-            body { padding: 10px; }
-            .radio { padding: 18px 14px 20px; border-radius: 28px; max-height: 96vh; }
-            .top-controls { justify-content: flex-start; gap: 6px; }
-            .lang-toggle, .theme-toggle { font-size: 10px; padding: 4px 10px; }
-            .lang-toggle .lang-flag { font-size: 13px; }
-            .logo-section { flex-wrap: wrap; gap: 12px; }
-            .logo-camel { width: 56px; height: 56px; }
-            .camel-svg { width: 44px; height: 44px; }
-            .logo-text h1 { font-size: 20px; }
-            .logo-text .sub { font-size: 11px; }
-            .freq-value { font-size: 28px; min-width: 70px; padding: 0 10px; }
-            .station-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); max-height: 200px; }
-            .station-preset { font-size: 10px; padding: 6px 8px; }
-            .genre-btn { font-size: 10px; padding: 4px 10px; }
-            .power-btn { font-size: 14px; padding: 10px 16px; min-width: 100px; }
-            .mini-map { height: 80px; }
-            .map-caption { font-size: 9px; padding: 2px 12px; bottom: 4px; }
-            .footer-credit { font-size: 10px; }
+        body.night-theme .footer-credits .highlight-text { color: rgba(255, 255, 255, 0.25); }
+        body.day-theme .footer-credits .highlight-text { color: rgba(0, 0, 0, 0.25); }
+
+        .footer-credits .heart { color: #b388ff; }
+        body.day-theme .footer-credits .heart { color: #d4af37; }
+
+        @media screen and (max-width: 920px) {
+            .hero-columns-block { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-block { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+            .widget-box.fullscreen { padding: 2rem; }
+            .widget-box.fullscreen h3 { font-size: 2.5rem; }
+            .widget-box.fullscreen .widget-icon { font-size: 5rem; }
+            .widget-box.fullscreen .mini-player { padding: 1rem 2rem; gap: 1.5rem; }
         }
 
-        @media (max-width: 399px) {
-            .radio { padding: 12px 8px 14px; }
-            .logo-camel { width: 44px; height: 44px; }
-            .camel-svg { width: 34px; height: 34px; }
-            .logo-text h1 { font-size: 16px; }
-            .freq-value { font-size: 22px; min-width: 55px; }
-            .station-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); max-height: 160px; }
-            .station-preset { font-size: 9px; padding: 4px 6px; }
-            .mini-map { height: 60px; }
+        @media screen and (max-width: 740px) {
+            .agency-wrap { padding: 1rem 1rem 0 1rem; }
+            .navbar { flex-direction: column; align-items: stretch; gap: 0.6rem; padding: 1rem 1.2rem; border-radius: 30px; }
+            .nav-links { gap: 1.2rem; font-size: 0.9rem; flex-wrap: wrap; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-item:last-child { display: none; }
+            .hero-text-col h1 { font-size: 2.4rem; }
+            .footer-block { grid-template-columns: 1fr; gap: 1.5rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .widget-box { max-width: 100%; padding: 2rem 1.5rem; }
+            .widget-box.fullscreen { padding: 1.5rem; }
+            .widget-box.fullscreen h3 { font-size: 2rem; }
+            .widget-box.fullscreen .widget-icon { font-size: 4rem; }
+            .widget-box.fullscreen .mini-player { padding: 0.8rem 1.2rem; gap: 1rem; flex-wrap: wrap; }
+            .map-container { aspect-ratio: 16 / 9; }
+            .map-container.fullscreen-map { aspect-ratio: auto; }
+            .radio-embed .radio { padding: 20px 16px 25px; border-radius: 30px; }
+            .radio-embed .freq-value { font-size: 26px; min-width: 70px; }
+            .radio-embed .action-row { flex-wrap: wrap; }
+            .radio-embed .power-btn { flex: 1 1 100%; }
+            .radio-embed .station-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); max-height: 200px; }
+            .radio-embed .station-preset { font-size: 9px; padding: 5px 8px; }
+            .footer-credits { font-size: 0.7rem; }
+            .avatar-placeholder { width: 52px; height: 52px; font-size: 1.6rem; }
+            .avatar-placeholder .upload-hint { width: 20px; height: 20px; font-size: 11px; }
+            .theme-toggle { width: 40px; height: 24px; }
+            .theme-toggle .toggle-circle { width: 18px; height: 18px; }
+            body.day-theme .theme-toggle .toggle-circle { left: 18px; }
+            .lang-btn { font-size: 10px; padding: 1px 6px; }
+            .arabic-slogan { font-size: 0.75rem; }
         }
 
-        @media (max-height: 600px) and (orientation: landscape) {
-            .radio { max-height: 98vh; padding: 12px 16px 14px; }
-            .logo-camel { width: 44px; height: 44px; }
-            .camel-svg { width: 34px; height: 34px; }
-            .logo-text h1 { font-size: 18px; }
-            .freq-value { font-size: 24px; min-width: 60px; }
-            .station-grid { max-height: 100px; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
-            .mini-map { height: 60px; }
+        @media screen and (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item:last-child { display: flex; }
+            .hero-text-col h1 { font-size: 2rem; }
+            .widget-box { padding: 1.5rem 1rem; }
+            .widget-box .widget-icon { font-size: 3.6rem; }
+            .widget-box h3 { font-size: 1.4rem; }
+            .widget-box .mini-player { gap: 0.8rem; padding: 0.6rem 1rem; }
+            .widget-box .mini-player i { font-size: 1.2rem; }
+            .widget-box .mini-player .play-circle { width: 44px; height: 44px; }
+            .widget-box .mini-player .play-circle i { font-size: 1.2rem; }
+            .widget-box.fullscreen { padding: 1rem; }
+            .widget-box.fullscreen h3 { font-size: 1.6rem; }
+            .widget-box.fullscreen .widget-icon { font-size: 3rem; }
+            .map-container { aspect-ratio: 4 / 3; }
+            .arabic-slogan { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="radio" id="radioApp">
+<div class="agency-wrap">
 
-    <!-- Top Controls: Language Switcher + Theme Toggle -->
-    <div class="top-controls">
-        <div class="lang-toggle" id="langToggle" title="Toggle language / تبديل اللغة">
-            <span class="lang-flag" id="langFlag">🇬🇧</span>
-            <span id="langLabel">EN</span>
-        </div>
-        <div class="theme-toggle" id="themeToggle">
-            <i class="fas fa-sun" id="themeIcon"></i>
-            <span id="themeLabel">Light</span>
-        </div>
-    </div>
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+    <header class="header-gallery-block">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-circle-wave"></i>
+                <span>Port Galib Radio</span>
+            </div>
 
-    <!-- Logo + Camel Mascot + Travco Badge -->
-    <div class="logo-section">
-        <div class="logo-camel">
-            <svg class="camel-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="58" rx="28" ry="18" fill="#d4a373" stroke="#b8895a" stroke-width="1.5"/>
-                <path d="M38 48 Q30 30 32 18 Q34 10 40 12 Q46 14 44 28 Q42 38 42 48" fill="#d4a373" stroke="#b8895a" stroke-width="1.5"/>
-                <ellipse cx="38" cy="14" rx="12" ry="10" fill="#d4a373" stroke="#b8895a" stroke-width="1.5"/>
-                <ellipse cx="28" cy="16" rx="6" ry="5" fill="#c9956b" stroke="#b8895a" stroke-width="1"/>
-                <rect x="31" y="8" width="14" height="8" rx="3" fill="#1a1a2e" stroke="#0a0a1a" stroke-width="1"/>
-                <rect x="33" y="6" width="10" height="4" rx="2" fill="#2d2d44"/>
-                <line x1="45" y1="10" x2="50" y2="12" stroke="#1a1a2e" stroke-width="2"/>
-                <rect x="18" y="14" width="14" height="4" rx="2" fill="#6d4c2a" stroke="#4d341a" stroke-width="0.8"/>
-                <circle cx="18" cy="16" r="2.5" fill="#c0392b" opacity="0.7"/>
-                <path d="M16 12 Q14 8 16 4 Q18 0 20 2" stroke="#aaa" stroke-width="1.2" opacity="0.5" fill="none"/>
-                <path d="M14 10 Q12 6 14 2" stroke="#aaa" stroke-width="1" opacity="0.3" fill="none"/>
-                <ellipse cx="38" cy="4" rx="16" ry="4" fill="#f0d8b0" stroke="#d4b890" stroke-width="1"/>
-                <path d="M28 4 Q38 -6 48 4" fill="#f0d8b0" stroke="#d4b890" stroke-width="1"/>
-                <rect x="32" y="-2" width="12" height="6" rx="2" fill="#f5e0c0"/>
-                <rect x="28" y="2" width="20" height="3" rx="1" fill="#e74c3c" opacity="0.7"/>
-                <rect x="32" y="72" width="6" height="14" rx="3" fill="#d4a373" stroke="#b8895a" stroke-width="1"/>
-                <rect x="62" y="72" width="6" height="14" rx="3" fill="#d4a373" stroke="#b8895a" stroke-width="1"/>
-                <path d="M78 58 Q86 54 84 48 Q82 42 88 40" stroke="#b8895a" stroke-width="2" fill="none"/>
-                <ellipse cx="54" cy="46" rx="10" ry="8" fill="#d4a373" stroke="#b8895a" stroke-width="1"/>
-            </svg>
+            <div class="avatar-placeholder" title="Upload photo">
+                <i class="fas fa-camera"></i>
+                <span class="upload-hint"><i class="fas fa-plus"></i></span>
+            </div>
+
+            <div class="nav-right">
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                </div>
+
+                <div class="theme-toggle-wrapper">
+                    <div class="theme-toggle" id="themeToggle">
+                        <span class="toggle-icon moon">🌙</span>
+                        <span class="toggle-icon sun">☀️</span>
+                        <div class="toggle-circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="#">Discover</a>
+                <a href="#">Playlists</a>
+                <a href="#">Podcasts</a>
+                <span class="btn-outline"><i class="fas fa-headphones-simple"></i> Listen</span>
+            </div>
+        </nav>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <i class="fas fa-water" style="font-size: 3.2rem;"></i>
+                <div class="overlay"><i class="fas fa-image"></i> Sunset Sessions</div>
+            </div>
+            <div class="gallery-item">
+                <i class="fas fa-umbrella-beach" style="font-size: 3.2rem;"></i>
+                <div class="overlay"><i class="fas fa-image"></i> Beach Vibes</div>
+            </div>
+            <div class="gallery-item">
+                <i class="fas fa-sailboat" style="font-size: 3.2rem;"></i>
+                <div class="overlay"><i class="fas fa-image"></i> Port Galib</div>
+            </div>
         </div>
-        <div class="logo-text">
-            <h1>Port Galib <span class="gold">FM/AM</span></h1>
-            <span class="sub" id="subtitle">
-                <i class="fas fa-umbrella-beach"></i> Red Sea · 94.5 FM
-                <i class="fas fa-sun"></i>
-                <a href="https://travco.com/en/" target="_blank" class="travco-badge">
-                    <i class="fas fa-building"></i> Travco
-                </a>
+    </header>
+
+    <!-- ============================================================
+         HERO + WIDGET
+    ============================================================ -->
+    <section class="hero-columns-block">
+        <div class="hero-text-col">
+            <div class="badge"><i class="fas fa-sun"></i> summer edition 2026</div>
+            <h1><i class="fas fa-radio"></i> Tune in <br>to the <span class="highlight">coast</span></h1>
+            <p>Sun-drenched frequencies, ocean waves & endless grooves — your personal beach radio, wherever you are.</p>
+            <div class="cta-group">
+                <span class="btn-primary"><i class="fas fa-play"></i> Start listening</span>
+                <span style="font-weight: 500; font-size: 0.9rem; transition: color 0.5s;">
+                    <i class="fas fa-wifi"></i> 24/7 live
+                </span>
+            </div>
+        </div>
+
+        <div class="hero-widget-col">
+            <div class="widget-box" id="liveStreamWidget">
+                <button class="fullscreen-btn" id="fullscreenToggle" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+
+                <div class="widget-icon"><i class="fas fa-circle-wave"></i></div>
+                <h3>Live Stream</h3>
+                <div class="sub">Port Galib · 128 kbps · Red Sea Coast</div>
+                <div class="mini-player">
+                    <i class="fas fa-backward-step"></i>
+                    <span class="play-circle"><i class="fas fa-play"></i></span>
+                    <i class="fas fa-forward-step"></i>
+                    <i class="fas fa-volume-low"></i>
+                </div>
+                <div class="listener-count">
+                    <i class="fas fa-headphones"></i> 1.2k listening now
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MEDIA PLAYER
+    ============================================================ -->
+    <section class="player-window-block">
+        <div class="player-window">
+            <div class="radio-embed">
+                <div class="radio" id="radioApp">
+                    <div class="display">
+                        <div class="frequency-section">
+                            <span class="freq-label">Frequency</span>
+                            <span class="freq-value" id="freqDisplay">87.5</span>
+                            <span class="freq-label">MHz</span>
+                        </div>
+                        <div class="meter-row">
+                            <div class="signal-meter">
+                                <div class="signal-fill" id="signalFill" style="width: 0%;"></div>
+                            </div>
+                            <div class="status-led">
+                                <span class="led off" id="ledIndicator"></span>
+                                <span id="statusText">Off</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <div class="tuning-area">
+                            <span class="tuning-label">Tune</span>
+                            <div class="slider-container">
+                                <input type="range" id="freqSlider" min="87.5" max="108.0" step="0.1" value="87.5">
+                            </div>
+                            <div class="freq-buttons">
+                                <button class="freq-btn" id="freqDown">−</button>
+                                <button class="freq-btn" id="freqUp">+</button>
+                            </div>
+                        </div>
+
+                        <div class="action-row">
+                            <button class="power-btn" id="powerBtn">⏻ Power</button>
+                            <div class="volume-area">
+                                <span class="vol-icon">🔊</span>
+                                <input type="range" id="volumeSlider" min="0" max="100" value="70">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="station-name" id="stationName">
+                        📻 <span>Select a station</span>
+                        <span class="audio-badge off" id="badge">● OFF</span>
+                    </div>
+
+                    <div class="genre-filter" id="genreFilter">
+                        <button class="genre-btn active" data-genre="all">🎵 All</button>
+                        <button class="genre-btn" data-genre="pop">🎤 Pop</button>
+                        <button class="genre-btn" data-genre="rock">🎸 Rock</button>
+                        <button class="genre-btn" data-genre="jazz">🎷 Jazz</button>
+                        <button class="genre-btn" data-genre="electronic">🎧 Electronic</button>
+                        <button class="genre-btn" data-genre="classical">🎻 Classical</button>
+                        <button class="genre-btn" data-genre="news">📰 News</button>
+                        <button class="genre-btn" data-genre="talk">💬 Talk</button>
+                    </div>
+
+                    <div class="error-msg" id="errorMsg">⚠️ Stream unavailable – retrying...</div>
+
+                    <div id="stationGrid" class="station-grid">
+                        <div class="loading-spinner"><i class="fas fa-spinner"></i> Loading stations...</div>
+                    </div>
+
+                    <div class="station-count" id="stationCount">Loading from Radio Browser API...</div>
+
+                    <div class="lang-hint">
+                        🌍 EN · RU · AR · 📻 Powered by Radio Browser API
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer class="footer-block">
+        <div class="footer-col">
+            <h4><i class="fas fa-circle-wave" style="color: #b388ff;"></i> Port Galib Radio</h4>
+            <p>Independent beach radio since 2019. Curated sounds from the Red Sea coast.</p>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-spotify"></i>
+                <i class="fab fa-soundcloud"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="#">Discover</a>
+            <a href="#">Playlists</a>
+            <a href="#">Podcasts</a>
+            <a href="#">Live schedule</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="#">hello@portgalib.radio</a>
+            <a href="#">+20 100 123 4567</a>
+            <a href="#">Port Galib, Egypt</a>
+        </div>
+
+        <div class="footer-col map-wrapper">
+            <div class="map-label"><i class="fas fa-location-dot" style="color: #b388ff;"></i> Location</div>
+            <div class="map-container" id="mapContainer">
+                <button class="map-fullscreen-btn" id="mapFullscreenBtn" title="Fullscreen map">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3544.529852475754!2d34.404476!3d27.330065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1451c9f23a8b7c8d%3A0x8b7a9c7f5e4d3c2b!2sPort%20Galib%2C%20Red%20Sea%20Governorate%2C%20Egypt!5e0!3m2!1sen!2sus!4v1700000000000"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Port Galib, Egypt Map"
+                ></iframe>
+            </div>
+            <div class="arabic-slogan">"موجات البحر الأحمر تنتظر أذنيك"</div>
+            <div style="text-align:center; font-size:0.6rem; margin-top:2px; opacity:0.3; transition:color 0.5s;">Red Sea waves await your ears</div>
+        </div>
+
+        <div class="footer-bottom">
+            <span><i class="far fa-copyright"></i> 2026 Port Galib Radio. All rights reserved.</span>
+            <span>Made with <i class="fas fa-heart heart"></i> by the coast</span>
+        </div>
+
+        <div class="footer-credits">
+            <span class="highlight-text">Developed in Halmstad, Sweden</span>
+            <span style="margin: 0 8px;">·</span>
+            <span class="highlight-text">Commissioned by Travco Travel Company</span>
+            <br>
+            <span style="font-size: 0.7rem; opacity: 0.6;">
+                <i class="fas fa-heart heart" style="font-size: 0.6rem;"></i>
+                Radio Browser API · 2026
+                <i class="fas fa-heart heart" style="font-size: 0.6rem;"></i>
             </span>
         </div>
-    </div>
+    </footer>
 
-    <!-- Display -->
-    <div class="display">
-        <div class="frequency-section">
-            <span class="freq-label" id="freqLabel">Frequency</span>
-            <span class="freq-value" id="freqDisplay">87.5</span>
-            <span class="freq-unit">MHz</span>
-        </div>
-        <div class="meter-row">
-            <div class="signal-meter">
-                <div class="signal-fill" id="signalFill" style="width: 0%;"></div>
-            </div>
-            <div class="status-led">
-                <span class="led" id="ledIndicator"></span>
-                <span id="statusText">Off</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Controls -->
-    <div class="controls">
-        <div class="tuning-area">
-            <span class="tuning-label" id="tuneLabel">Tune</span>
-            <div class="slider-container">
-                <input type="range" id="freqSlider" min="87.5" max="108.0" step="0.1" value="87.5">
-            </div>
-            <div class="freq-buttons">
-                <button class="freq-btn" id="freqDown">−</button>
-                <button class="freq-btn" id="freqUp">+</button>
-            </div>
-        </div>
-
-        <div class="action-row">
-            <button class="power-btn" id="powerBtn">⏻ Power</button>
-            <div class="volume-area">
-                <span class="vol-icon">🔊</span>
-                <input type="range" id="volumeSlider" min="0" max="100" value="70">
-            </div>
-        </div>
-    </div>
-
-    <!-- Station Name -->
-    <div class="station-name" id="stationName">
-        📻 <span class="station-title" id="stationTitle">Select a station</span>
-        <span class="station-meta" id="stationMeta">— Beach Radio</span>
-        <span class="audio-badge off" id="badge">● OFF</span>
-    </div>
-
-    <!-- Genre Filter -->
-    <div class="genre-filter" id="genreFilter">
-        <button class="genre-btn active" data-genre="all" id="gAll">🎵 All</button>
-        <button class="genre-btn" data-genre="pop" id="gPop">🎤 Pop</button>
-        <button class="genre-btn" data-genre="rock" id="gRock">🎸 Rock</button>
-        <button class="genre-btn" data-genre="jazz" id="gJazz">🎷 Jazz</button>
-        <button class="genre-btn" data-genre="electronic" id="gElectronic">🎧 Electronic</button>
-        <button class="genre-btn" data-genre="classical" id="gClassical">🎻 Classical</button>
-        <button class="genre-btn" data-genre="news" id="gNews">📰 News</button>
-        <button class="genre-btn" data-genre="talk" id="gTalk">💬 Talk</button>
-        <button class="genre-btn" data-genre="beach" id="gBeach">🏖️ Beach</button>
-    </div>
-
-    <div class="error-msg" id="errorMsg">⚠️ Stream unavailable – retrying...</div>
-
-    <div id="stationGrid" class="station-grid">
-        <div class="loading-spinner"><i class="fas fa-spinner"></i> <span id="loadingText">Loading stations...</span></div>
-    </div>
-
-    <div class="station-count" id="stationCount">Loading from Radio Browser API...</div>
-
-    <!-- Mini Map: Port Galib, Egypt -->
-    <div class="mini-map">
-        <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=34.9%2C25.2%2C35.7%2C25.8&layer=mapnik&marker=25.5%2C35.3"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen
-        ></iframe>
-        <div class="map-caption" id="mapCaption">
-            <i class="fas fa-map-pin"></i> Port Galib · Red Sea, Egypt
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer-credit" id="footerCredit">
-        <i class="fas fa-code"></i>
-        <span id="footerDev">Developed in</span>
-        <span class="highlight location">
-            <i class="fas fa-map-pin"></i> <span id="footerCity">Halmstad, Sweden</span>
-        </span>
-        <i class="fas fa-arrow-right"></i>
-        <span id="footerCommissioned">Commissioned by</span>
-        <span class="highlight">
-            <a href="https://travco.com/en/" target="_blank" class="travco-link">
-                <i class="fas fa-building"></i> <span id="footerTravco">Travco Travel Company</span>
-            </a>
-        </span>
-        <br />
-        <span class="heart">❤</span>
-        <span id="footerApi">Radio Browser API</span> · 2026
-        <span class="heart">❤</span>
-    </div>
 </div>
 
+<!-- ============================================================
+     FULLSCREEN SCRIPTS
+============================================================ -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const widget = document.getElementById('liveStreamWidget');
+        const fullscreenBtn = document.getElementById('fullscreenToggle');
+        let isFullscreen = false;
+
+        function toggleFullscreen() {
+            isFullscreen = !isFullscreen;
+            if (isFullscreen) {
+                widget.classList.add('fullscreen');
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                document.body.style.overflow = 'hidden';
+            } else {
+                widget.classList.remove('fullscreen');
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleFullscreen();
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isFullscreen) {
+                toggleFullscreen();
+            }
+        });
+
+        if (widget) {
+            widget.addEventListener('dblclick', function(e) {
+                if (e.target.closest('.fullscreen-btn')) return;
+                toggleFullscreen();
+            });
+        }
+
+        const mapContainer = document.getElementById('mapContainer');
+        const mapFullscreenBtn = document.getElementById('mapFullscreenBtn');
+        let isMapFullscreen = false;
+
+        function toggleMapFullscreen() {
+            isMapFullscreen = !isMapFullscreen;
+            if (isMapFullscreen) {
+                mapContainer.classList.add('fullscreen-map');
+                mapFullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                document.body.style.overflow = 'hidden';
+            } else {
+                mapContainer.classList.remove('fullscreen-map');
+                mapFullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (mapFullscreenBtn) {
+            mapFullscreenBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMapFullscreen();
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMapFullscreen) {
+                toggleMapFullscreen();
+            }
+        });
+
+        if (mapContainer) {
+            mapContainer.addEventListener('dblclick', function(e) {
+                if (e.target.closest('.map-fullscreen-btn')) return;
+                toggleMapFullscreen();
+            });
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        let isNight = true;
+
+        function toggleTheme() {
+            isNight = !isNight;
+            if (isNight) {
+                document.body.classList.remove('day-theme');
+                document.body.classList.add('night-theme');
+            } else {
+                document.body.classList.remove('night-theme');
+                document.body.classList.add('day-theme');
+            }
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+
+        const langBtns = document.querySelectorAll('.lang-btn');
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                langBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const lang = this.dataset.lang;
+                console.log('Language selected:', lang);
+            });
+        });
+    });
+</script>
+
+<!-- ============================================================
+     RADIO SCRIPT
+============================================================ -->
 <script>
     (function() {
         'use strict';
 
-        // ================================================================
-        //  TRANSLATIONS
-        // ================================================================
-        const LANG = {
-            en: {
-                code: 'en',
-                flag: '🇬🇧',
-                label: 'EN',
-                dir: 'ltr',
-                brand: 'Port Galib FM/AM',
-                subtitle: 'Red Sea · 94.5 FM',
-                freqLabel: 'Frequency',
-                tuneLabel: 'Tune',
-                power: 'Power',
-                stationTitle: 'Select a station',
-                stationMeta: '— Beach Radio',
-                badgeOff: '● OFF',
-                badgeLive: '● LIVE',
-                loading: 'Loading stations...',
-                count: 'stations · Radio Browser API',
-                error: '⚠️ Stream unavailable – retrying...',
-                noStations: 'No stations found',
-                retry: 'Retrying...',
-                apiError: 'Failed to load stations. Please refresh.',
-                mapCaption: 'Port Galib · Red Sea, Egypt',
-                footerDev: 'Developed in',
-                footerCity: 'Halmstad, Sweden',
-                footerCommissioned: 'Commissioned by',
-                footerTravco: 'Travco Travel Company',
-                footerApi: 'Radio Browser API',
-                genres: {
-                    all: '🎵 All',
-                    pop: '🎤 Pop',
-                    rock: '🎸 Rock',
-                    jazz: '🎷 Jazz',
-                    electronic: '🎧 Electronic',
-                    classical: '🎻 Classical',
-                    news: '📰 News',
-                    talk: '💬 Talk',
-                    beach: '🏖️ Beach'
-                },
-                status: {
-                    off: 'Off',
-                    live: 'Live',
-                    loading: 'Loading...'
-                }
-            },
-            ar: {
-                code: 'ar',
-                flag: '🇪🇬',
-                label: 'عربي',
-                dir: 'rtl',
-                brand: 'بورت غالب إف إم/إيه إم',
-                subtitle: 'البحر الأحمر · 94.5 FM',
-                freqLabel: 'التردد',
-                tuneLabel: 'ضبط',
-                power: 'تشغيل',
-                stationTitle: 'اختر محطة',
-                stationMeta: '— راديو الشاطئ',
-                badgeOff: '● إيقاف',
-                badgeLive: '● بث مباشر',
-                loading: 'جاري تحميل المحطات...',
-                count: 'محطة · Radio Browser API',
-                error: '⚠️ البث غير متاح – إعادة المحاولة...',
-                noStations: 'لم يتم العثور على محطات',
-                retry: 'جاري إعادة المحاولة...',
-                apiError: 'فشل تحميل المحطات. يرجى التحديث.',
-                mapCaption: 'بورت غالب · البحر الأحمر، مصر',
-                footerDev: 'تم التطوير في',
-                footerCity: 'هالمستاد، السويد',
-                footerCommissioned: 'بتكليف من',
-                footerTravco: 'شركة ترافكو للسياحة',
-                footerApi: 'Radio Browser API',
-                genres: {
-                    all: '🎵 الكل',
-                    pop: '🎤 بوب',
-                    rock: '🎸 روك',
-                    jazz: '🎷 جاز',
-                    electronic: '🎧 إلكتروني',
-                    classical: '🎻 كلاسيكي',
-                    news: '📰 أخبار',
-                    talk: '💬 حوار',
-                    beach: '🏖️ شاطئ'
-                },
-                status: {
-                    off: 'إيقاف',
-                    live: 'بث مباشر',
-                    loading: 'جاري التحميل...'
-                }
-            }
-        };
-
-        let currentLang = 'en';
-
-        // ================================================================
-        //  THEME
-        // ================================================================
-        let currentTheme = 'light';
-
-        function setTheme(theme) {
-            currentTheme = theme;
-            document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
-            const icon = document.getElementById('themeIcon');
-            const label = document.getElementById('themeLabel');
-            if (theme === 'dark') {
-                icon.className = 'fas fa-moon';
-                label.textContent = 'Dark';
-            } else {
-                icon.className = 'fas fa-sun';
-                label.textContent = 'Light';
-            }
-            try { localStorage.setItem('portgalib-theme', theme); } catch(_) {}
-        }
-
-        function toggleTheme() {
-            setTheme(currentTheme === 'light' ? 'dark' : 'light');
-        }
-
-        try {
-            const saved = localStorage.getItem('portgalib-theme');
-            if (saved === 'dark' || saved === 'light') setTheme(saved);
-            else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
-        } catch(_) {}
-
-        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-        // ================================================================
-        //  LANGUAGE
-        // ================================================================
-        function setLanguage(lang) {
-            currentLang = lang;
-            const t = LANG[lang];
-            document.documentElement.dir = t.dir;
-            document.documentElement.lang = lang;
-
-            document.getElementById('langFlag').textContent = t.flag;
-            document.getElementById('langLabel').textContent = t.label;
-
-            // Update all translatable elements
-            document.querySelector('.logo-text h1').textContent = t.brand;
-            document.getElementById('subtitle').innerHTML = `
-                <i class="fas fa-umbrella-beach"></i> ${t.subtitle}
-                <i class="fas fa-sun"></i>
-                <a href="https://travco.com/en/" target="_blank" class="travco-badge">
-                    <i class="fas fa-building"></i> Travco
-                </a>
-            `;
-
-            document.getElementById('freqLabel').textContent = t.freqLabel;
-            document.getElementById('tuneLabel').textContent = t.tuneLabel;
-            document.getElementById('powerBtn').innerHTML = `⏻ ${t.power}`;
-
-            document.getElementById('stationTitle').textContent = t.stationTitle;
-            document.getElementById('stationMeta').textContent = t.stationMeta;
-            document.getElementById('badge').textContent = t.badgeOff;
-
-            document.getElementById('loadingText').textContent = t.loading;
-            document.getElementById('mapCaption').innerHTML = `<i class="fas fa-map-pin"></i> ${t.mapCaption}`;
-
-            document.getElementById('footerDev').textContent = t.footerDev;
-            document.getElementById('footerCity').textContent = t.footerCity;
-            document.getElementById('footerCommissioned').textContent = t.footerCommissioned;
-            document.getElementById('footerTravco').textContent = t.footerTravco;
-            document.getElementById('footerApi').textContent = t.footerApi;
-
-            // Genres
-            document.getElementById('gAll').textContent = t.genres.all;
-            document.getElementById('gPop').textContent = t.genres.pop;
-            document.getElementById('gRock').textContent = t.genres.rock;
-            document.getElementById('gJazz').textContent = t.genres.jazz;
-            document.getElementById('gElectronic').textContent = t.genres.electronic;
-            document.getElementById('gClassical').textContent = t.genres.classical;
-            document.getElementById('gNews').textContent = t.genres.news;
-            document.getElementById('gTalk').textContent = t.genres.talk;
-            document.getElementById('gBeach').textContent = t.genres.beach;
-
-            // Status
-            updateStatusUI();
-
-            try { localStorage.setItem('portgalib-lang', lang); } catch(_) {}
-        }
-
-        function toggleLanguage() {
-            setLanguage(currentLang === 'en' ? 'ar' : 'en');
-        }
-
-        try {
-            const savedLang = localStorage.getItem('portgalib-lang');
-            if (savedLang === 'ar' || savedLang === 'en') setLanguage(savedLang);
-        } catch(_) {}
-
-        document.getElementById('langToggle').addEventListener('click', toggleLanguage);
-
-        // ================================================================
-        //  RADIO BROWSER API
-        // ================================================================
         const API_BASE_URLS = [
             'https://de1.api.radio-browser.info',
             'https://nl1.api.radio-browser.info',
@@ -1270,7 +2184,6 @@
             currentApiIndex = (currentApiIndex + 1) % API_BASE_URLS.length;
         }
 
-        // --- DOM refs ---
         const freqDisplay = document.getElementById('freqDisplay');
         const freqSlider = document.getElementById('freqSlider');
         const signalFill = document.getElementById('signalFill');
@@ -1279,13 +2192,11 @@
         const powerBtn = document.getElementById('powerBtn');
         const stationNameEl = document.getElementById('stationName');
         const volumeSlider = document.getElementById('volumeSlider');
-        const badge = document.getElementById('badge');
         const stationGrid = document.getElementById('stationGrid');
         const genreFilter = document.getElementById('genreFilter');
         const errorMsg = document.getElementById('errorMsg');
         const stationCount = document.getElementById('stationCount');
 
-        // --- Audio ---
         let audio = null;
         let currentStreamUrl = '';
         let currentStation = null;
@@ -1293,7 +2204,6 @@
         let retryCount = 0;
         let retryTimeout = null;
 
-        // --- State ---
         const state = {
             frequency: 87.5,
             isOn: false,
@@ -1304,7 +2214,6 @@
             isLoading: false
         };
 
-        // --- Init audio ---
         function initAudio() {
             if (audio) {
                 audio.pause();
@@ -1330,8 +2239,6 @@
             audio.addEventListener('error', (e) => {
                 console.error('Stream error:', e);
                 state.isBuffering = false;
-                const t = LANG[currentLang];
-                errorMsg.textContent = t.error;
                 errorMsg.classList.add('show');
                 updateUI();
 
@@ -1401,16 +2308,16 @@
         function setVolume(value) {
             state.volume = Math.min(100, Math.max(0, value));
             if (audio) audio.volume = state.volume / 100;
+            const el = document.querySelector('.radio');
+            if (el) el.style.filter = `brightness(${0.8 + (state.volume / 100) * 0.2})`;
         }
 
-        // --- API: fetch stations ---
         async function fetchStations(genre = 'all') {
             if (state.isLoading) return;
 
             state.isLoading = true;
-            const t = LANG[currentLang];
-            stationGrid.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner"></i> ${t.loading}</div>`;
-            stationCount.textContent = t.loading;
+            stationGrid.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner"></i> Loading stations...</div>`;
+            stationCount.textContent = 'Loading from Radio Browser API...';
 
             let apiUrl = getApiUrl();
 
@@ -1418,30 +2325,32 @@
                 let endpoint;
                 if (genre === 'all') {
                     endpoint = `${apiUrl}/json/stations/topvote/100`;
-                } else if (genre === 'beach') {
-                    const encoded = encodeURIComponent('beach');
-                    endpoint = `${apiUrl}/json/stations/bytag/${encoded}?limit=50`;
                 } else {
                     const encodedTag = encodeURIComponent(genre);
                     endpoint = `${apiUrl}/json/stations/bytag/${encodedTag}?limit=50`;
                 }
 
                 const response = await fetch(endpoint);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
 
                 const data = await response.json();
 
                 if (!data || data.length === 0) {
-                    stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff8866;">${t.noStations}</div>`;
-                    stationCount.textContent = '0 ' + t.count.split('·')[0] + ' ' + t.count.split('·')[1] || '';
+                    stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff6b6b;">No stations found for "${genre}"</div>`;
+                    stationCount.textContent = '0 stations found';
                     state.stations = [];
                     state.isLoading = false;
                     return;
                 }
 
                 let filtered = data.filter(s =>
-                    s.urlResolved && s.urlResolved.startsWith('http') && s.lastCheckOk !== false
+                    s.urlResolved &&
+                    s.urlResolved.startsWith('http') &&
+                    s.lastCheckOk !== false
                 );
+
                 if (filtered.length === 0) {
                     filtered = data.filter(s => s.url && s.url.startsWith('http'));
                 }
@@ -1468,10 +2377,13 @@
                 });
 
                 state.stations.sort((a, b) => (b.votes || 0) - (a.votes || 0));
-                if (state.stations.length > 50) state.stations = state.stations.slice(0, 50);
+
+                if (state.stations.length > 50) {
+                    state.stations = state.stations.slice(0, 50);
+                }
 
                 renderStations();
-                stationCount.textContent = `${state.stations.length} ${t.count}`;
+                stationCount.textContent = `${state.stations.length} stations · Radio Browser API`;
 
                 if (state.stations.length > 0 && !state.isOn) {
                     const first = state.stations[0];
@@ -1486,12 +2398,11 @@
             } catch (error) {
                 console.error('API error:', error);
                 rotateApi();
-                const t2 = LANG[currentLang];
                 if (currentApiIndex < API_BASE_URLS.length * 2) {
-                    stationGrid.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner"></i> ${t2.retry}</div>`;
+                    stationGrid.innerHTML = `<div class="loading-spinner"><i class="fas fa-spinner"></i> Retrying with another server...</div>`;
                     setTimeout(() => fetchStations(genre), 1000);
                 } else {
-                    stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff8866;">⚠️ ${t2.apiError}</div>`;
+                    stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff6b6b;">⚠️ Failed to load stations. Please refresh.</div>`;
                     stationCount.textContent = 'API error – try again';
                 }
             } finally {
@@ -1499,12 +2410,11 @@
             }
         }
 
-        // --- Render station grid ---
         function renderStations() {
             stationGrid.innerHTML = '';
+
             if (state.stations.length === 0) {
-                const t = LANG[currentLang];
-                stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff8866;">${t.noStations}</div>`;
+                stationGrid.innerHTML = `<div class="loading-spinner" style="color: #ff6b6b;">No stations available</div>`;
                 return;
             }
 
@@ -1517,12 +2427,7 @@
                 btn.dataset.index = index;
 
                 const genreDisplay = station.genre.length > 20 ? station.genre.substring(0, 18) + '…' : station.genre;
-                const countryDisplay = station.country.length > 12 ? station.country.substring(0, 10) + '…' : station.country;
-                btn.innerHTML = `
-                    ${station.name.substring(0, 16)}
-                    <span class="genre-tag">${genreDisplay}</span>
-                    <span class="country-tag">${countryDisplay}</span>
-                `;
+                btn.innerHTML = `${station.name.substring(0, 18)} <span class="genre-tag">${genreDisplay} · ${station.country}</span>`;
                 btn.title = `${station.name} · ${station.genre} · ${station.country} · ${station.bitrate}kbps`;
 
                 if (currentStation && station.id === currentStation.id) {
@@ -1530,7 +2435,9 @@
                 }
 
                 btn.addEventListener('click', () => {
-                    if (!state.isOn) state.isOn = true;
+                    if (!state.isOn) {
+                        state.isOn = true;
+                    }
                     currentStation = station;
                     const streamUrl = station.url || station.urlResolved;
                     if (streamUrl) {
@@ -1538,7 +2445,6 @@
                         playStream(streamUrl);
                         updateStationUI(station);
                     } else {
-                        const t = LANG[currentLang];
                         errorMsg.textContent = '⚠️ No stream URL available';
                         errorMsg.classList.add('show');
                     }
@@ -1557,7 +2463,9 @@
         function findStationByFreq(freq) {
             const key = parseFloat(freq).toFixed(1);
             const index = Math.round((parseFloat(key) - 87.5) / 0.5);
-            if (index >= 0 && index < state.stations.length) return state.stations[index];
+            if (index >= 0 && index < state.stations.length) {
+                return state.stations[index];
+            }
             return null;
         }
 
@@ -1595,11 +2503,7 @@
                 });
             } else {
                 if (!state.isOn) {
-                    const t = LANG[currentLang];
-                    document.getElementById('stationTitle').textContent = `${key} MHz`;
-                    document.getElementById('stationMeta').textContent = '— no station';
-                    document.getElementById('badge').textContent = t.badgeOff;
-                    document.getElementById('badge').className = 'audio-badge off';
+                    stationNameEl.innerHTML = `📻 <span>${key} MHz</span> · no station <span class="audio-badge off">● OFF</span>`;
                 }
                 document.querySelectorAll('.station-preset').forEach(b => b.classList.remove('active'));
             }
@@ -1608,25 +2512,10 @@
 
         function updateStationUI(station) {
             if (!station) return;
-            const t = LANG[currentLang];
             const badgeClass = state.isOn && isPlaying ? '' : 'off';
-            const badgeText = state.isOn && isPlaying ? t.badgeLive : t.badgeOff;
+            const badgeText = state.isOn && isPlaying ? '● LIVE' : '● OFF';
             const genreDisplay = station.genre.length > 25 ? station.genre.substring(0, 22) + '…' : station.genre;
-            document.getElementById('stationTitle').textContent = station.name;
-            document.getElementById('stationMeta').textContent = `· ${genreDisplay} · ${station.country}`;
-            document.getElementById('badge').textContent = badgeText;
-            document.getElementById('badge').className = `audio-badge ${badgeClass}`;
-        }
-
-        function updateStatusUI() {
-            const t = LANG[currentLang];
-            if (state.isOn && isPlaying) {
-                statusText.textContent = t.status.live;
-            } else if (state.isOn && state.isBuffering) {
-                statusText.textContent = t.status.loading;
-            } else {
-                statusText.textContent = t.status.off;
-            }
+            stationNameEl.innerHTML = `📻 <span>${station.name}</span> · ${genreDisplay} · ${station.country} <span class="audio-badge ${badgeClass}">${badgeText}</span>`;
         }
 
         function updateUI() {
@@ -1636,25 +2525,24 @@
             else strength = 0.05;
             signalFill.style.width = Math.min(100, Math.round(strength * 100)) + '%';
 
-            updateStatusUI();
-
             if (state.isOn && isPlaying) {
-                ledIndicator.className = 'led on';
+                ledIndicator.className = 'led';
+                statusText.textContent = 'Live';
             } else if (state.isOn && state.isBuffering) {
                 ledIndicator.className = 'led buffering';
+                statusText.textContent = 'Loading...';
             } else {
-                ledIndicator.className = 'led';
+                ledIndicator.className = 'led off';
+                statusText.textContent = 'Off';
             }
 
             powerBtn.classList.toggle('on', state.isOn);
-            const t = LANG[currentLang];
-            powerBtn.innerHTML = `⏻ ${t.power}`;
+            powerBtn.innerHTML = state.isOn ? '⏻ Power' : '⏻ Power';
 
             if (currentStation) updateStationUI(currentStation);
             volumeSlider.value = state.volume;
         }
 
-        // --- Event listeners ---
         genreFilter.addEventListener('click', (e) => {
             const btn = e.target.closest('.genre-btn');
             if (!btn) return;
@@ -1662,7 +2550,11 @@
             document.querySelectorAll('.genre-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             state.currentGenre = genre;
-            if (state.isOn) stopAudio();
+
+            if (state.isOn) {
+                stopAudio();
+            }
+
             fetchStations(genre);
         });
 
@@ -1671,10 +2563,12 @@
         });
 
         document.getElementById('freqUp').addEventListener('click', () => {
-            tuneTo(Math.min(108, state.frequency + 0.5));
+            const newFreq = Math.min(108, state.frequency + 0.5);
+            tuneTo(newFreq);
         });
         document.getElementById('freqDown').addEventListener('click', () => {
-            tuneTo(Math.max(87.5, state.frequency - 0.5));
+            const newFreq = Math.max(87.5, state.frequency - 0.5);
+            tuneTo(newFreq);
         });
 
         powerBtn.addEventListener('click', function() {
@@ -1706,8 +2600,7 @@
                         else btn.classList.remove('active');
                     });
                 } else {
-                    const t = LANG[currentLang];
-                    alert(t.noStations + '. Please select a genre.');
+                    alert('No stations loaded. Please select a genre.');
                 }
             }
         });
@@ -1719,7 +2612,10 @@
         stationNameEl.addEventListener('dblclick', function() {
             if (state.stations.length === 0) return;
             const random = state.stations[Math.floor(Math.random() * state.stations.length)];
-            if (!state.isOn) { state.isOn = true; playStream(random.url); }
+            if (!state.isOn) {
+                state.isOn = true;
+                playStream(random.url);
+            }
             currentStation = random;
             updateStationUI(random);
             document.querySelectorAll('.station-preset').forEach((btn, idx) => {
@@ -1740,9 +2636,11 @@
         });
 
         freqDisplay.addEventListener('click', function() {
-            if (state.isOn && currentStreamUrl && audio) {
-                audio.pause();
-                setTimeout(() => playStream(currentStreamUrl), 300);
+            if (state.isOn && currentStreamUrl) {
+                if (audio) {
+                    audio.pause();
+                    setTimeout(() => playStream(currentStreamUrl), 300);
+                }
             }
         });
 
@@ -1750,30 +2648,25 @@
             if (e.target.tagName === 'INPUT') return;
             if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
                 e.preventDefault();
-                tuneTo(Math.min(108, state.frequency + 0.3));
+                const newFreq = Math.min(108, state.frequency + 0.3);
+                tuneTo(newFreq);
             } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
                 e.preventDefault();
-                tuneTo(Math.max(87.5, state.frequency - 0.3));
+                const newFreq = Math.max(87.5, state.frequency - 0.3);
+                tuneTo(newFreq);
             } else if (e.key === ' ' || e.key === 'Space') {
                 e.preventDefault();
                 powerBtn.click();
-            } else if (e.key === 't' || e.key === 'T') {
-                toggleTheme();
-            } else if (e.key === 'l' || e.key === 'L') {
-                toggleLanguage();
             }
         });
 
-        // --- Init ---
         fetchStations('all');
         setVolume(70);
 
-        console.log('📻 Port Galib FM/AM · Beach Radio');
+        console.log('📻 Port Galib FM · Radio Browser API integration');
         console.log('🌐 API endpoints:', API_BASE_URLS);
-        console.log('🏖️ Travco Travel Company · Egypt');
-        console.log('📍 Developed in Halmstad, Sweden');
-        console.log('💡 Click a station to play · T to toggle theme · L to toggle language');
     })();
 </script>
+
 </body>
 </html>
